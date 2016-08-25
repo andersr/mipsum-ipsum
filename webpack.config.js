@@ -13,7 +13,7 @@ const PATHS = {
   template: path.join(__dirname, 'app/templates/my_template.ejs')
 }
 
-const common = {
+const common = merge({
   entry: {
     style: PATHS.style,
     app: PATHS.app
@@ -22,25 +22,32 @@ const common = {
     path: PATHS.build,
     filename: '[name].js'
   },
-  module: {
-    loaders: [
-      {
-        test: /\.jsx?$/,
-        loaders: ['babel?cacheDirectory'],
-        include: PATHS.app
-      }
-    ]
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: 'Webpack demo',
-      template: PATHS.template
-    })
-  ],
+  // module: {
+  //   loaders: [
+  //     {
+  //       test: /\.jsx?$/,
+  //       loaders: ['babel?cacheDirectory'],
+  //       include: PATHS.app
+  //     }
+  //   ]
+  // },
+  // plugins: [
+  //   new HtmlWebpackPlugin({
+  //     title: 'Webpack demo',
+  //     template: PATHS.template
+  //   })
+  // ],
   resolve: {
     extensions: ['', '.js', '.jsx']
   }
-}
+},
+  parts.indexTemplate({
+    title: 'Kanban demo',
+    appMountId: 'app'
+  }),
+  parts.loadJSX(PATHS.app),
+  parts.lintJSX(PATHS.app)
+)
 
 let config
 

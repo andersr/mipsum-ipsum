@@ -1,7 +1,51 @@
 const webpack = require('webpack')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const PurifyCSSPlugin = require('purifycss-webpack-plugin')
+
+exports.indexTemplate = function(options) {
+  return {
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: require('html-webpack-template'),
+        title: options.title,
+        appMountId: options.appMountId,
+        inject: false
+      })
+    ]
+  };
+}
+
+
+exports.loadJSX = function(include) {
+  return {
+    module: {
+      loaders: [
+        {
+          test: /\.(js|jsx)$/,
+          // Enable caching for extra performance
+          loaders: ['babel?cacheDirectory'],
+          include: include
+        }
+      ]
+    }
+  };
+}
+
+exports.lintJSX = function(include) {
+  return {
+    module: {
+      preLoaders: [
+        {
+          test: /\.(js|jsx)$/,
+          loaders: ['eslint'],
+          include: include
+        }
+      ]
+    }
+  };
+}
 
 exports.devServer = function (options) {
   return {
