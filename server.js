@@ -12,7 +12,7 @@ if (process.env.NODE_ENV !== 'production') {
   const middleware = webpackDevMiddleware(compiler, {
     hot: true,
     filename: 'bundle.js',
-    publicPath: '/assets/',
+    publicPath: webpackConfig.output.publicPath,
     stats: {
       colors: true,
       chunks: false

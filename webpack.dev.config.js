@@ -16,7 +16,7 @@ var config = {
   output: {
     path: path.join(__dirname, 'build'),
     filename: 'bundle.js',
-    publicPath: '/assets/',
+    publicPath: '/',
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -32,8 +32,8 @@ var config = {
   module: {
     loaders: [{
       test: /\.jsx?$/,
-      exclude: /node_modules/,
-      loader: 'babel'
+      loaders: ['react-hot', 'babel'],
+      include: path.join(__dirname, 'app')
     }]
   }
 }

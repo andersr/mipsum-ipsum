@@ -4,9 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 var config = {
   context: path.join(__dirname, 'app'),
-  entry: [
-    path.join(__dirname, 'app/index.js')
-  ],
+  entry: './index.js',
   output: {
     path: path.join(__dirname, 'build'),
     filename: 'bundle.js',
@@ -23,8 +21,8 @@ var config = {
   module: {
     loaders: [{
       test: /\.jsx?$/,
-      exclude: /node_modules/,
-      loader: 'babel'
+      loaders: ['babel'],
+      include: path.join(__dirname, 'app')
     }]
   }
 }
