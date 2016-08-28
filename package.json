@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "6.2.2"
+  },
   "scripts": {
     "start": "node server.js",
     "build": "webpack --config ./webpack.prod.config.js --progress --colors",
