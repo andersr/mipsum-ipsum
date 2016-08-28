@@ -1,25 +1,25 @@
-var express = require('express')
-var port = (process.env.PORT || 3000)
-var path = require('path')
-var app = express()
-var env = process.env.NODE_ENV;
+const express = require('express')
+const port = (process.env.PORT || 3000)
+const path = require('path')
+const app = express()
+const env = process.env.NODE_ENV
 
 if (env === 'staging') {
-  var basicAuth = require('basic-auth-connect')
+  const basicAuth = require('basic-auth-connect')
   app.use(basicAuth(process.env.NPM_CONFIG_BASIC_AUTH_USER, process.env.NPM_CONFIG_BASIC_AUTH_PWD))
 }
 
-if (env === 'staging' || env === 'production' ) {
-  app.use(express.static(__dirname + '/build'));
+if (env === 'staging' || env === 'production') {
+  app.use(express.static(__dirname + '/build'))
   app.get('/', function (req, res) {
     res.render('index')
   })
 } else {
-  var webpack = require('webpack')
-  var webpackDevMiddleware = require('webpack-dev-middleware')
-  var webpackHotMiddleware = require('webpack-hot-middleware')
-  var webpackConfig = require('./webpack.dev.config.js')
-  var compiler = webpack(webpackConfig)
+  const webpack = require('webpack')
+  const webpackDevMiddleware = require('webpack-dev-middleware')
+  const webpackHotMiddleware = require('webpack-hot-middleware')
+  const webpackConfig = require('./webpack.dev.config.js')
+  const compiler = webpack(webpackConfig)
   const middleware = webpackDevMiddleware(compiler, {
     hot: true,
     filename: 'bundle.js',
@@ -31,7 +31,7 @@ if (env === 'staging' || env === 'production' ) {
     historyApiFallback: true
   })
 
-  app.use(middleware);
+  app.use(middleware)
   app.use(webpackHotMiddleware(compiler, {
     log: console.log,
     path: '/__webpack_hmr',
@@ -44,21 +44,6 @@ if (env === 'staging' || env === 'production' ) {
   })
 }
 
-var server = app.listen(port, function () {
+app.listen(port, function () {
   console.log('Listening at port: ', port)
 })
-
-// app.use(webpackDevMiddleware(compiler, {
-//   hot: true,
-//   filename: 'bundle.js',
-//   publicPath: '/assets/',
-//   stats: {
-//     colors: true,
-//   },
-//   historyApiFallback: true,
-// }));
-
-
-// app.get('/', function (req, res) {
-//   res.send('<body>Hello World<script src=\'assets/bundle.js\'></script></body>');
-// });

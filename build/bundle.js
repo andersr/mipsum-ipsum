@@ -21463,7 +21463,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        'Foo Test Bar React test foo',
+	        'Test Bar React test foo',
 	        _react2.default.createElement(_OtherComponent2.default, null)
 	      );
 	    }

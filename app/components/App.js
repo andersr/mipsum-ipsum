@@ -8,7 +8,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        Foo Test Bar React test foo
+        Test Bar React test foo
         <Other />
       </div>
     );
