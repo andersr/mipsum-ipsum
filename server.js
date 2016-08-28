@@ -7,6 +7,9 @@ var env = process.env.NODE_ENV;
 // console.log("process.env.NODE_ENV: ", process.env.NODE_ENV)
 
 if (env === 'staging') {
+  var basicAuth = require('basic-auth-connect');
+  app.use(basicAuth(process.env.NPM_CONFIG_BASIC_AUTH_USER, process.env.NPM_CONFIG_BASIC_AUTH_PWD));
+  
   app.use(express.static(__dirname + '/build'));
   app.get('/', function (req, res) {
     res.render('index')
