@@ -1,8 +1,10 @@
-var path = require('path')
-var webpack = require('webpack')
+const path = require('path')
+// const parts = require('./libs/parts')
+const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
-var config = {
+const config = {
   context: path.join(__dirname, 'app'),
   entry: './index.js',
   output: {
@@ -16,7 +18,10 @@ var config = {
       template: path.join(__dirname, 'app/templates/index.ejs'),
       inject: 'body',
       filename: 'index.html'
-    })
+    }),
+    new CleanWebpackPlugin(path.join(__dirname, 'app'), {
+        root: process.cwd()
+      })
   ],
   module: {
     loaders: [{

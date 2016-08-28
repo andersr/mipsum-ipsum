@@ -1,6 +1,7 @@
 var path = require('path')
 var webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const NpmInstallPlugin = require('npm-install-webpack-plugin')
 
 // var PATHS = {
 //   template: path.join(__dirname, 'app/templates/index.ejs')
@@ -27,7 +28,8 @@ var config = {
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new NpmInstallPlugin()
   ],
   module: {
     loaders: [{
