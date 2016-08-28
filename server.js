@@ -4,18 +4,12 @@ var path = require('path')
 var app = express()
 var env = process.env.NODE_ENV;
 
-// console.log("process.env.NODE_ENV: ", process.env.NODE_ENV)
-
 if (env === 'staging') {
-  var basicAuth = require('basic-auth-connect');
-  app.use(basicAuth(process.env.NPM_CONFIG_BASIC_AUTH_USER, process.env.NPM_CONFIG_BASIC_AUTH_PWD));
-  
-  app.use(express.static(__dirname + '/build'));
-  app.get('/', function (req, res) {
-    res.render('index')
-  })
+  var basicAuth = require('basic-auth-connect')
+  app.use(basicAuth(process.env.NPM_CONFIG_BASIC_AUTH_USER, process.env.NPM_CONFIG_BASIC_AUTH_PWD))
+}
 
-} else if (env == 'production') {
+if (env === 'staging' || env === 'production' ) {
   app.use(express.static(__dirname + '/build'));
   app.get('/', function (req, res) {
     res.render('index')
@@ -24,7 +18,7 @@ if (env === 'staging') {
   var webpack = require('webpack')
   var webpackDevMiddleware = require('webpack-dev-middleware')
   var webpackHotMiddleware = require('webpack-hot-middleware')
-  var webpackConfig = require('./webpack.dev.config.js');
+  var webpackConfig = require('./webpack.dev.config.js')
   var compiler = webpack(webpackConfig)
   const middleware = webpackDevMiddleware(compiler, {
     hot: true,
