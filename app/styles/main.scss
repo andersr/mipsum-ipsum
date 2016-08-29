@@ -1,0 +1,11 @@
+$my-color: blue;
+
+body {
+  background-color: $my-color;
+  color: white;
+  font-size: 2em;
+}
+
+.test {
+  font-family: monospace;
+}
