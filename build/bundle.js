@@ -21594,7 +21594,7 @@
 
 	    var _this = _possibleConstructorReturn(this, (ClipboardBtn.__proto__ || Object.getPrototypeOf(ClipboardBtn)).call(this, props));
 
-	    var clipboard = new _clipboard2.default('.clipboard-btn');
+	    _this.clipboard = new _clipboard2.default('.clipboard-btn');
 	    _this.state = {
 	      copied: false
 	    };
@@ -21602,15 +21602,21 @@
 	  }
 
 	  _createClass(ClipboardBtn, [{
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      this.clipboard.destroy();
+	    }
+	  }, {
 	    key: 'handleClick',
 	    value: function handleClick(e) {
-	      var _this2 = this;
-
-	      this.setState({ copied: true });
-
-	      setTimeout(function () {
-	        _this2.setState({ copied: false });
-	      }, 1500);
+	      var self = this;
+	      this.clipboard.on('success', function (e) {
+	        e.clearSelection();
+	        self.setState({ copied: true });
+	        setTimeout(function () {
+	          self.setState({ copied: false });
+	        }, 1500);
+	      });
 	    }
 	  }, {
 	    key: 'render',
