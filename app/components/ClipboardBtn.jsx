@@ -6,21 +6,27 @@ export default class ClipboardBtn extends React.Component {
 
   constructor(props) {
     super(props);
-    const clipboard = new Clipboard('.clipboard-btn')
+    this.clipboard = new Clipboard('.clipboard-btn')
     this.state = {
       copied: false
     }
   }
+  componentWillUnmount () {
+    this.clipboard.destroy()
+  }
 
   handleClick (e) {
-    this.setState({ copied: true })
-
-    setTimeout(() => {
-      this.setState({ copied: false })
-    }, 1500)
-
+    const self = this
+    this.clipboard.on('success', (e) => {
+      e.clearSelection()
+      self.setState({ copied: true })
+      setTimeout(() => {
+        self.setState({ copied: false })
+      }, 1500)
+    })
   }
-  render() {
+
+  render () {
     const btnClasses = classnames('clipboard-btn', {
        'copied': this.state.copied
     })
