@@ -2,11 +2,11 @@ var path = require('path')
 var webpack = require('webpack')
 const validate = require('webpack-validator')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
-// const PATHS = {
-//   style: path.join(__dirname, 'app/styles/main.scss')
-// }
+
+const PATHS = {
+  style: path.join(__dirname, 'app/styles/main.scss')
+}
 
 var config = {
   context: path.join(__dirname, 'app'),
