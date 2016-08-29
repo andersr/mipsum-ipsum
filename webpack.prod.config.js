@@ -1,12 +1,14 @@
 const path = require('path')
+// const merge = require('webpack-merge')
+const validate = require('webpack-validator')
 // const parts = require('./libs/parts')
+
 const webpack = require('webpack')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 const config = {
-  context: path.join(__dirname, 'app'),
-  entry: './index.js',
+  entry: path.join(__dirname, 'app'),
   output: {
     path: path.join(__dirname, 'build'),
     filename: 'bundle.js',
@@ -31,4 +33,6 @@ const config = {
     }]
   }
 }
-module.exports = config
+module.exports = validate(config, {
+  quiet: true
+})
