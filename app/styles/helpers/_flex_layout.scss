@@ -1,0 +1,28 @@
+.flex-main-content {
+  flex: 1;
+}
+
+// ******* FLEX COLUMN *******
+@mixin flex-column {
+  display: flex;
+  flex-flow: column;
+}
+.flex-column {
+  @include flex-column;
+}
+
+// ******* FLEX ROW *******
+@mixin flex-row {
+  display: flex;
+  flex-flow: row nowrap;
+
+  &.flex-centered {
+  	 justify-content: center;
+  }
+  &.flex-vertical-middle {
+  	align-items:center;
+  }
+}
+.flex-row {
+	@include flex-row;
+}

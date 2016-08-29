@@ -1,13 +1,2 @@
 @import "vendor/normalize";
-
-$my-color: orange;
-
-body {
-  background-color: $my-color;
-  color: white;
-  font-size: 2em;
-}
-
-.test {
-  font-family: monospace;
-}
+@import "helpers/flex_layout";

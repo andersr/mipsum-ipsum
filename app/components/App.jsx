@@ -1,5 +1,6 @@
 import React from 'react'
-import Other from './OtherComponent'
+import Header from './Header'
+import staticContent from '../data/static'
 
 export default class App extends React.Component {
   constructor(props) {
@@ -7,9 +8,8 @@ export default class App extends React.Component {
   }
   render() {
     return (
-      <div className="test">
-        FOO Test Bar React test foo
-        <Other />
+      <div>
+        <Header title={staticContent.appInfo.title} />
       </div>
     );
   }

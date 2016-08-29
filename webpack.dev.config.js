@@ -41,6 +41,9 @@ var config = {
         include: PATHS.style
       }
     ]
+  },
+  resolve: {
+    extensions: ['', '.js', '.jsx']
   }
 }
 module.exports = validate(config, {
