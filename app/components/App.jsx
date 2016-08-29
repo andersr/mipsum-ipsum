@@ -8,7 +8,7 @@ export default class App extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div id="app-container">
         <Header title={staticContent.appInfo.title} />
       </div>
     );

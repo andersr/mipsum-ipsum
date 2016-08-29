@@ -8,6 +8,9 @@ body {
 #app-container {
   min-height: 100vh;
   @include flex-column;
+  padding:  $app-padding;
+  max-width: $app-max-width;
+  margin: 0 auto;
 }
 #main-content {
 	flex: 1;

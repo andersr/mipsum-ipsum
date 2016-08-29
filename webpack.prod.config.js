@@ -45,6 +45,9 @@ const config = {
       loader: ExtractTextPlugin.extract('style', 'css!sass'),
       include: PATHS.style
     }]
+  },
+  resolve: {
+    extensions: ['', '.js', '.jsx']
   }
 }
 module.exports = validate(config, {
