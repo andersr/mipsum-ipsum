@@ -14,10 +14,9 @@ const PATHS = {
 }
 
 const config = {
-  entry: {
-    style: PATHS.style,
-    app: PATHS.app
-  },
+  context: path.join(__dirname, 'app'),
+  entry: [
+    './index.js', './styles/main.scss'],
   output: {
     path: path.join(__dirname, 'build'),
     filename: 'bundle.js',
