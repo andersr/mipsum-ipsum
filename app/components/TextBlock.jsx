@@ -1,7 +1,7 @@
 import React from 'react'
 
 const TextBlock = props =>
-  <p>{props.text}</p>
+  <p id={props.id}>{props.text}</p>
 
 export default TextBlock
 

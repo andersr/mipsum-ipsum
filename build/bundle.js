@@ -45,7 +45,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(1);
-	module.exports = __webpack_require__(176);
+	module.exports = __webpack_require__(177);
 
 
 /***/ },
@@ -21441,9 +21441,13 @@
 
 	var _Header2 = _interopRequireDefault(_Header);
 
-	var _static = __webpack_require__(175);
+	var _TextBlock = __webpack_require__(175);
 
-	var _static2 = _interopRequireDefault(_static);
+	var _TextBlock2 = _interopRequireDefault(_TextBlock);
+
+	var _staticText = __webpack_require__(176);
+
+	var _staticText2 = _interopRequireDefault(_staticText);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21468,7 +21472,8 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { id: 'app-container' },
-	        _react2.default.createElement(_Header2.default, { title: _static2.default.appInfo.title })
+	        _react2.default.createElement(_Header2.default, { title: _staticText2.default.appInfo.title }),
+	        _react2.default.createElement(_TextBlock2.default, { text: _staticText2.default.lipsumText.paragraphBlock })
 	      );
 	    }
 	  }]);
@@ -21515,6 +21520,37 @@
 
 /***/ },
 /* 175 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var TextBlock = function TextBlock(props) {
+	  return _react2.default.createElement(
+	    'p',
+	    null,
+	    props.text
+	  );
+	};
+
+	exports.default = TextBlock;
+
+
+	TextBlock.propTypes = {
+	  text: _react2.default.PropTypes.string.isRequired
+	};
+
+/***/ },
+/* 176 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -21522,16 +21558,19 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var staticContent = {
+	var staticText = {
 	  appInfo: {
 	    title: 'Morem Ipsum'
+	  },
+	  lipsumText: {
+	    paragraphBlock: 'Lorem ipsum elit eros ac a a adipiscing ullamcorper luctus in scelerisque montes mollis lorem sem ut. Vestibulum consectetur iaculis sociosqu ac sem vestibulum eu a tristique placerat eget libero ullamcorper ullamcorper vehicula accumsan adipiscing habitant.'
 	  }
 	};
 
-	exports.default = staticContent;
+	exports.default = staticText;
 
 /***/ },
-/* 176 */
+/* 177 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
