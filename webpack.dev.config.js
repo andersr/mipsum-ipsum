@@ -1,5 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
+const validate = require('webpack-validator')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const NpmInstallPlugin = require('npm-install-webpack-plugin')
 
@@ -39,4 +40,6 @@ var config = {
     }]
   }
 }
-module.exports = config
+module.exports = validate(config, {
+  quiet: true
+})
