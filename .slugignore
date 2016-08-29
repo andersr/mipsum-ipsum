@@ -3,3 +3,4 @@ README.md
 webpack*
 .eslintrc
 /libs/parts.js
+devServer.js
