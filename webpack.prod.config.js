@@ -21,7 +21,7 @@ const config = {
       inject: 'body',
       filename: 'index.html'
     }),
-    new CleanWebpackPlugin(path.join(__dirname, 'app'), {
+    new CleanWebpackPlugin(path.join(__dirname, 'build'), {
         root: process.cwd()
       })
   ],
