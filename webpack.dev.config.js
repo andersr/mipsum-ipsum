@@ -3,7 +3,6 @@ var webpack = require('webpack')
 const validate = require('webpack-validator')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-
 const PATHS = {
   style: path.join(__dirname, 'app/styles/main.scss')
 }
@@ -27,8 +26,7 @@ var config = {
     }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
-    // new ExtractTextPlugin('styles.css')
+    new webpack.NoErrorsPlugin()
   ],
   module: {
     loaders: [
@@ -48,6 +46,3 @@ var config = {
 module.exports = validate(config, {
   quiet: true
 })
-
-
- // ExtractTextPlugin.extract('style', 'css!sass'),
