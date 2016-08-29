@@ -1,0 +1,15 @@
+// ******* FULL HEIGHT VIEWPORT *******
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+}
+#app-container {
+  min-height: 100vh;
+  @include flex-column;
+}
+#main-content {
+	flex: 1;
+	@include flex-column;
+}

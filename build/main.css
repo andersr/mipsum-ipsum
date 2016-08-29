@@ -364,10 +364,26 @@ textarea {
   font: inherit;
   /* 2 */ }
 
-body {
-  background-color: orange;
-  color: white;
-  font-size: 2em; }
+html {
+  box-sizing: border-box; }
 
-.test {
-  font-family: monospace; }
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+button {
+  cursor: pointer; }
+
+.flex-main-content {
+  flex: 1; }
+
+.flex-column {
+  display: flex;
+  flex-flow: column; }
+
+.flex-row {
+  display: flex;
+  flex-flow: row nowrap; }
+  .flex-row.flex-centered {
+    justify-content: center; }
+  .flex-row.flex-vertical-middle {
+    align-items: center; }
