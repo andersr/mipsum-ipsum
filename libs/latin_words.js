@@ -1,4 +1,3 @@
-//USE CSV FORMAT INSTEAD EVENTUALLY
 module.exports = [
   'ac',
   'accumsan',
