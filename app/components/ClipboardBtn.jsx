@@ -11,7 +11,6 @@ export default class ClipboardBtn extends React.Component {
     }
     const self = this
     this.clipboard.on('success', (e) => {
-      console.log('clipboard success')
       e.clearSelection()
       self.setState({ copied: true })
       setTimeout(() => {

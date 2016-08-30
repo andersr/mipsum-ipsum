@@ -21606,6 +21606,15 @@
 	    _this.state = {
 	      copied: false
 	    };
+	    var self = _this;
+	    _this.clipboard.on('success', function (e) {
+	      console.log('clipboard success');
+	      e.clearSelection();
+	      self.setState({ copied: true });
+	      setTimeout(function () {
+	        self.setState({ copied: false });
+	      }, 1500);
+	    });
 	    return _this;
 	  }
 
@@ -21613,19 +21622,6 @@
 	    key: 'componentWillUnmount',
 	    value: function componentWillUnmount() {
 	      this.clipboard.destroy();
-	    }
-	  }, {
-	    key: 'handleClick',
-	    value: function handleClick(e) {
-	      console.log('clicked');
-	      var self = this;
-	      this.clipboard.on('success', function (e) {
-	        // e.clearSelection()
-	        self.setState({ copied: true });
-	        setTimeout(function () {
-	          self.setState({ copied: false });
-	        }, 1500);
-	      });
 	    }
 	  }, {
 	    key: 'render',
@@ -21636,7 +21632,7 @@
 
 	      return _react2.default.createElement(
 	        'button',
-	        { className: btnClasses, 'data-clipboard-text': this.props.clipboardText, onClick: this.handleClick.bind(this) },
+	        { className: btnClasses, 'data-clipboard-text': this.props.clipboardText },
 	        this.props.label
 	      );
 	    }
