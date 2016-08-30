@@ -4,43 +4,38 @@
 var HELPERS = require('./helpers')
 var SRC_WORDS = require('./latin_words')
 
-var RandomWordParagraph = function (wordList) {
-  this.wordList = wordList
-  // console.log('original list ', this.wordList)
+function randomWordParagraph (srcWords) {
 
-  this.sentenceQty = HELPERS.getRandomNumberBetween(2,4)
-
-  // function shuffledWordList(words){
-  //   return HELPERS.shuffleItems(words)
-  // }
-
-  function createSentence (wordQty, src) {
+  function createSentence (wordQty) {
     var words = []
-    var shuffledWords = HELPERS.shuffleItems(src)
-    // console.log('shuffledWords ', shuffledWords)
+    var shuffledWords = HELPERS.shuffleItems(srcWords)
 
     for (var i = 0; i < wordQty; i++) {
       words.push(shuffledWords[i])
     }
     var sentence = words.join(' ')
-    return sentence
+    sentence += '.'
+    var capitalized = sentence[0].toUpperCase() + sentence.substr(1);
+    return capitalized
   }
 
-  function createParagraph (sentenceQty, words) {
+  function createParagraph () {
+    var sentenceQty = HELPERS.getRandomNumberBetween(2,4)
     var textBlock = []
     var wordQty
     for (var i = 0; i < sentenceQty; i++) {
       wordQty = HELPERS.getRandomNumberBetween(3,7)
-      textBlock.push(createSentence(wordQty, words))
+      textBlock.push(createSentence(wordQty))
     }
-    return textBlock
-  }
 
-  return createParagraph(this.sentenceQty, this.wordList)
+    return textBlock.join(' ')
+  }
+  return createParagraph()
+
 }
 
 //export this and and then use this way.
-var lipsumBlock = new RandomWordParagraph(SRC_WORDS)
+var lipsumBlock = randomWordParagraph(SRC_WORDS)
 
 console.log(lipsumBlock)
 
