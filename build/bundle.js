@@ -21608,7 +21608,6 @@
 	    };
 	    var self = _this;
 	    _this.clipboard.on('success', function (e) {
-	      console.log('clipboard success');
 	      e.clearSelection();
 	      self.setState({ copied: true });
 	      setTimeout(function () {
