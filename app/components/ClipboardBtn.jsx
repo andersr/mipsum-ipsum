@@ -3,21 +3,15 @@ import Clipboard from 'clipboard'
 import classnames from 'classnames'
 
 export default class ClipboardBtn extends React.Component {
-
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
     this.clipboard = new Clipboard('.clipboard-btn')
     this.state = {
       copied: false
     }
-  }
-  componentWillUnmount () {
-    this.clipboard.destroy()
-  }
-
-  handleClick (e) {
     const self = this
     this.clipboard.on('success', (e) => {
+      console.log('clipboard success')
       e.clearSelection()
       self.setState({ copied: true })
       setTimeout(() => {
@@ -26,13 +20,17 @@ export default class ClipboardBtn extends React.Component {
     })
   }
 
+  componentWillUnmount () {
+    this.clipboard.destroy()
+  }
+
   render () {
     const btnClasses = classnames('clipboard-btn', {
-       'copied': this.state.copied
+      'copied': this.state.copied
     })
 
     return (
-      <button className={btnClasses} data-clipboard-text={this.props.clipboardText} onClick={this.handleClick.bind(this)}>{this.props.label}</button>
+      <button className={btnClasses} data-clipboard-text={this.props.clipboardText}>{this.props.label}</button>
     )
   }
 }
