@@ -30,9 +30,6 @@ exports.randomWordParagraph = function (srcWords) {
     return textBlock.join(' ')
   }
   return createParagraph()
-
 }
-
-//export this and and then use this way.
 
 //REFACTOR: use up entire wordList before creating new one
