@@ -2,9 +2,8 @@
 'use strict'
 
 var HELPERS = require('./helpers')
-var SRC_WORDS = require('./latin_words')
 
-function randomWordParagraph (srcWords) {
+exports.randomWordParagraph = function (srcWords) {
 
   function createSentence (wordQty) {
     var words = []
@@ -35,8 +34,5 @@ function randomWordParagraph (srcWords) {
 }
 
 //export this and and then use this way.
-var lipsumBlock = randomWordParagraph(SRC_WORDS)
-
-console.log(lipsumBlock)
 
 //REFACTOR: use up entire wordList before creating new one
