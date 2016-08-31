@@ -12,3 +12,5 @@ export const randomNumberBetween = function (min, max) {
 export const shuffleItems = function (items) {
   return shuffle(items)
 }
+
+export const capitalize = str => str[0].toUpperCase() + str.substr(1)
