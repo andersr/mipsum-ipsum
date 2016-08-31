@@ -45,7 +45,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(1);
-	module.exports = __webpack_require__(193);
+	module.exports = __webpack_require__(194);
 
 
 /***/ },
@@ -21441,25 +21441,13 @@
 
 	var _Header2 = _interopRequireDefault(_Header);
 
-	var _TextBlock = __webpack_require__(175);
+	var _ListContainer = __webpack_require__(175);
 
-	var _TextBlock2 = _interopRequireDefault(_TextBlock);
+	var _ListContainer2 = _interopRequireDefault(_ListContainer);
 
-	var _ClipboardBtn = __webpack_require__(176);
-
-	var _ClipboardBtn2 = _interopRequireDefault(_ClipboardBtn);
-
-	var _random_word_paragraph = __webpack_require__(187);
-
-	var _random_word_paragraph2 = _interopRequireDefault(_random_word_paragraph);
-
-	var _static_text = __webpack_require__(191);
+	var _static_text = __webpack_require__(193);
 
 	var _static_text2 = _interopRequireDefault(_static_text);
-
-	var _latin_words = __webpack_require__(192);
-
-	var _latin_words2 = _interopRequireDefault(_latin_words);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21468,8 +21456,15 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	// import TextBlock from './TextBlock'
+	// import ClipboardBtn from './ClipboardBtn'
 
-	var textBlock = (0, _random_word_paragraph2.default)(_latin_words2.default);
+	// import randomWordParagraph from '../../libs/random_word_paragraph'
+
+
+	// import LATIN_WORDS from '../../libs/latin_words'
+
+	// const textBlock = randomWordParagraph(LATIN_WORDS)
 
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
@@ -21487,8 +21482,7 @@
 	        'div',
 	        { id: 'app-container' },
 	        _react2.default.createElement(_Header2.default, { title: _static_text2.default.appInfo.title }),
-	        _react2.default.createElement(_ClipboardBtn2.default, { clipboardText: textBlock }),
-	        _react2.default.createElement(_TextBlock2.default, { id: 'testTarget', text: textBlock })
+	        _react2.default.createElement(_ListContainer2.default, null)
 	      );
 	    }
 	  }]);
@@ -21543,29 +21537,131 @@
 	  value: true
 	});
 
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _List = __webpack_require__(176);
+
+	var _List2 = _interopRequireDefault(_List);
+
+	var _ClipboardBtn = __webpack_require__(177);
+
+	var _ClipboardBtn2 = _interopRequireDefault(_ClipboardBtn);
+
+	var _random_word_paragraph = __webpack_require__(188);
+
+	var _random_word_paragraph2 = _interopRequireDefault(_random_word_paragraph);
+
+	var _latin_words = __webpack_require__(192);
+
+	var _latin_words2 = _interopRequireDefault(_latin_words);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	// import TextBlock from './TextBlock'
+	// import ClipboardBtn from './ClipboardBtn'
+
+	// import STATIC_TEXT from '../../libs/static_text'
+
+
+	var ListContainer = function (_React$Component) {
+	  _inherits(ListContainer, _React$Component);
+
+	  function ListContainer() {
+	    _classCallCheck(this, ListContainer);
+
+	    var _this = _possibleConstructorReturn(this, (ListContainer.__proto__ || Object.getPrototypeOf(ListContainer)).call(this));
+
+	    _this.state = {
+	      listItems: [],
+	      listContent: ''
+	    };
+	    return _this;
+	  }
+
+	  // mergeTextBlocks () {
+	  //   const mergedTextBlocks = this.state.listItems.join(' ')
+	  //
+	  //   this.setState({
+	  //     listContent: mergedTextBlocks
+	  //   })
+	  // }
+
+
+	  _createClass(ListContainer, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      var defaultBlock = (0, _random_word_paragraph2.default)(_latin_words2.default);
+	      this.setState({
+	        listItems: this.state.listItems.concat([defaultBlock]),
+	        listContent: defaultBlock
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      // console.log('list items: ', this.state.listItems)
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_ClipboardBtn2.default, { clipboardText: this.state.listContent }),
+	        _react2.default.createElement(_List2.default, { listItems: this.state.listItems })
+	      );
+	    }
+	  }]);
+
+	  return ListContainer;
+	}(_react2.default.Component);
+
+	exports.default = ListContainer;
+
+/***/ },
+/* 176 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
 	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var TextBlock = function TextBlock(props) {
+	var List = function List(props) {
 	  return _react2.default.createElement(
-	    'p',
-	    { id: props.id },
-	    props.text
+	    'ul',
+	    null,
+	    props.listItems.map(function (item, key) {
+	      return _react2.default.createElement(
+	        'li',
+	        { key: key },
+	        item
+	      );
+	    })
 	  );
 	};
 
-	exports.default = TextBlock;
+	exports.default = List;
 
 
-	TextBlock.propTypes = {
-	  text: _react2.default.PropTypes.string.isRequired
+	List.propTypes = {
+	  listItems: _react2.default.PropTypes.array.isRequired
 	};
 
 /***/ },
-/* 176 */
+/* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21580,11 +21676,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _clipboard = __webpack_require__(177);
+	var _clipboard = __webpack_require__(178);
 
 	var _clipboard2 = _interopRequireDefault(_clipboard);
 
-	var _classnames = __webpack_require__(186);
+	var _classnames = __webpack_require__(187);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -21625,6 +21721,11 @@
 	      this.clipboard.destroy();
 	    }
 	  }, {
+	    key: 'handleClick',
+	    value: function handleClick(e) {
+	      e.preventDefault();
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      var btnClasses = (0, _classnames2.default)('clipboard-btn', {
@@ -21633,7 +21734,7 @@
 
 	      return _react2.default.createElement(
 	        'button',
-	        { className: btnClasses, 'data-clipboard-text': this.props.clipboardText },
+	        { className: btnClasses, 'data-clipboard-text': this.props.clipboardText, onClick: this.handleClick.bind(this) },
 	        this.props.label
 	      );
 	    }
@@ -21655,12 +21756,12 @@
 	};
 
 /***/ },
-/* 177 */
+/* 178 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
 	    if (true) {
-	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, __webpack_require__(178), __webpack_require__(180), __webpack_require__(181)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, __webpack_require__(179), __webpack_require__(181), __webpack_require__(182)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	    } else if (typeof exports !== "undefined") {
 	        factory(module, require('./clipboard-action'), require('tiny-emitter'), require('good-listener'));
 	    } else {
@@ -21819,12 +21920,12 @@
 	});
 
 /***/ },
-/* 178 */
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
 	    if (true) {
-	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, __webpack_require__(179)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, __webpack_require__(180)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	    } else if (typeof exports !== "undefined") {
 	        factory(module, require('select'));
 	    } else {
@@ -22050,7 +22151,7 @@
 	});
 
 /***/ },
-/* 179 */
+/* 180 */
 /***/ function(module, exports) {
 
 	function select(element) {
@@ -22084,7 +22185,7 @@
 
 
 /***/ },
-/* 180 */
+/* 181 */
 /***/ function(module, exports) {
 
 	function E () {
@@ -22156,11 +22257,11 @@
 
 
 /***/ },
-/* 181 */
+/* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var is = __webpack_require__(182);
-	var delegate = __webpack_require__(183);
+	var is = __webpack_require__(183);
+	var delegate = __webpack_require__(184);
 
 	/**
 	 * Validates all params and calls the right
@@ -22257,7 +22358,7 @@
 
 
 /***/ },
-/* 182 */
+/* 183 */
 /***/ function(module, exports) {
 
 	/**
@@ -22312,10 +22413,10 @@
 
 
 /***/ },
-/* 183 */
+/* 184 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var closest = __webpack_require__(184);
+	var closest = __webpack_require__(185);
 
 	/**
 	 * Delegates event to a selector.
@@ -22362,10 +22463,10 @@
 
 
 /***/ },
-/* 184 */
+/* 185 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var matches = __webpack_require__(185)
+	var matches = __webpack_require__(186)
 
 	module.exports = function (element, selector, checkYoSelf) {
 	  var parent = checkYoSelf ? element : element.parentNode
@@ -22378,7 +22479,7 @@
 
 
 /***/ },
-/* 185 */
+/* 186 */
 /***/ function(module, exports) {
 
 	
@@ -22423,7 +22524,7 @@
 	}
 
 /***/ },
-/* 186 */
+/* 187 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -22477,7 +22578,7 @@
 
 
 /***/ },
-/* 187 */
+/* 188 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22487,7 +22588,7 @@
 	});
 	exports.default = randomWordParagraph;
 
-	var _utils = __webpack_require__(188);
+	var _utils = __webpack_require__(189);
 
 	function randomWordParagraph(srcWords) {
 	  var totalWords = (0, _utils.randomNumberBetween)(20, 25);
@@ -22519,7 +22620,7 @@
 	}
 
 /***/ },
-/* 188 */
+/* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22529,11 +22630,11 @@
 	});
 	exports.capitalize = exports.shuffleItems = exports.randomNumberBetween = undefined;
 
-	var _randomNumber = __webpack_require__(189);
+	var _randomNumber = __webpack_require__(190);
 
 	var _randomNumber2 = _interopRequireDefault(_randomNumber);
 
-	var _shuffleArray = __webpack_require__(190);
+	var _shuffleArray = __webpack_require__(191);
 
 	var _shuffleArray2 = _interopRequireDefault(_shuffleArray);
 
@@ -22556,7 +22657,7 @@
 	};
 
 /***/ },
-/* 189 */
+/* 190 */
 /***/ function(module, exports) {
 
 	void function(root){
@@ -22606,7 +22707,7 @@
 
 
 /***/ },
-/* 190 */
+/* 191 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -22694,7 +22795,20 @@
 
 
 /***/ },
-/* 191 */
+/* 192 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var LATIN_WORDS = ['ac', 'acceptus', 'accumsan', 'adsum', 'adipiscing', 'aliquantum', 'balbus', 'blandior', 'caecus', 'cavus', 'cognatus', 'consectetur', 'decorus', 'desparatus', 'elit', 'eros', 'flax', 'iaculis', 'ipsum', 'libero', 'lorem', 'luctus', 'placerat', 'sem', 'tristique', 'ullamcorper', 'ut', 'vehicula', 'vestibulum'];
+
+	exports.default = LATIN_WORDS;
+
+/***/ },
+/* 193 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -22711,20 +22825,7 @@
 	exports.default = STATIC_TEXT;
 
 /***/ },
-/* 192 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var LATIN_WORDS = ['ac', 'acceptus', 'accumsan', 'adsum', 'adipiscing', 'aliquantum', 'balbus', 'blandior', 'caecus', 'cavus', 'cognatus', 'consectetur', 'decorus', 'desparatus', 'elit', 'eros', 'flax', 'iaculis', 'ipsum', 'libero', 'lorem', 'luctus', 'placerat', 'sem', 'tristique', 'ullamcorper', 'ut', 'vehicula', 'vestibulum'];
-
-	exports.default = LATIN_WORDS;
-
-/***/ },
-/* 193 */
+/* 194 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
