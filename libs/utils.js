@@ -1,7 +1,7 @@
 import randomNumber from 'random-number'
 import shuffle from 'shuffle-array'
 
-export const randomNumberBetween = function (min, max) {
+export const randomNumberBetween = (min, max) => {
   return randomNumber({
     min: min,
     max: max,
@@ -9,8 +9,6 @@ export const randomNumberBetween = function (min, max) {
   })
 }
 
-export const shuffleItems = function (items) {
-  return shuffle(items)
-}
+export const shuffleItems = items => shuffle(items)
 
 export const capitalize = str => str[0].toUpperCase() + str.substr(1)
