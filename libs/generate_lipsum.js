@@ -2,12 +2,14 @@
 
 import { capitalize, randomNumberBetween, shuffleItems } from './utils'
 
+// generate a single text block with a min/max range.
+
 export default function randomWordParagraph (srcWords) {
   function createSentence (wordQty) {
-    var words = []
-    var shuffledWords = shuffleItems(srcWords)
+    const words = []
+    const shuffledWords = shuffleItems(srcWords)
 
-    for (var i = 0; i < wordQty; i++) {
+    for (let i = 0; i < wordQty; i++) {
       words.push(shuffledWords[i])
     }
     var sentence = words.join(' ')
@@ -16,10 +18,10 @@ export default function randomWordParagraph (srcWords) {
   }
 
   function createParagraph () {
-    var sentenceQty = randomNumberBetween(2, 4)
-    var textBlock = []
-    var wordQty
-    for (var i = 0; i < sentenceQty; i++) {
+    const sentenceQty = randomNumberBetween(2, 4)
+    const textBlock = []
+    let wordQty
+    for (let i = 0; i < sentenceQty; i++) {
       wordQty = randomNumberBetween(3, 7)
       textBlock.push(createSentence(wordQty))
     }
