@@ -33,7 +33,7 @@ var config = {
       {
         test: /\.jsx?$/,
         loaders: ['react-hot', 'babel'],
-        include: path.join(__dirname, 'app')
+        include: [path.join(__dirname, 'app'), path.join(__dirname, 'libs')]
       },
       {
         test: /\.scss$/,
