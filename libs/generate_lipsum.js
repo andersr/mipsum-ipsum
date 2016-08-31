@@ -1,13 +1,13 @@
 /* eslint-disable */
 'use strict'
 
-var HELPERS = require('./helpers')
+import { randomNumberBetween, shuffleItems } from './utils'
 
-exports.randomWordParagraph = function (srcWords) {
+export default function randomWordParagraph (srcWords) {
 
   function createSentence (wordQty) {
     var words = []
-    var shuffledWords = HELPERS.shuffleItems(srcWords)
+    var shuffledWords = shuffleItems(srcWords)
 
     for (var i = 0; i < wordQty; i++) {
       words.push(shuffledWords[i])
@@ -19,11 +19,11 @@ exports.randomWordParagraph = function (srcWords) {
   }
 
   function createParagraph () {
-    var sentenceQty = HELPERS.getRandomNumberBetween(2,4)
+    var sentenceQty = randomNumberBetween(2,4)
     var textBlock = []
     var wordQty
     for (var i = 0; i < sentenceQty; i++) {
-      wordQty = HELPERS.getRandomNumberBetween(3,7)
+      wordQty = randomNumberBetween(3,7)
       textBlock.push(createSentence(wordQty))
     }
 
@@ -31,5 +31,3 @@ exports.randomWordParagraph = function (srcWords) {
   }
   return createParagraph()
 }
-
-//REFACTOR: use up entire wordList before creating new one
