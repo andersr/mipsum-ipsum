@@ -1,4 +1,3 @@
-/* eslint-disable */
 'use strict'
 
 import { randomNumberBetween, shuffleItems } from './utils'
