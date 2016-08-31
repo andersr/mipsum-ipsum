@@ -45,7 +45,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(1);
-	module.exports = __webpack_require__(189);
+	module.exports = __webpack_require__(193);
 
 
 /***/ },
@@ -21449,15 +21449,15 @@
 
 	var _ClipboardBtn2 = _interopRequireDefault(_ClipboardBtn);
 
-	var _staticText = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../data/staticText\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _random_word_paragraph = __webpack_require__(187);
 
-	var _staticText2 = _interopRequireDefault(_staticText);
+	var _random_word_paragraph2 = _interopRequireDefault(_random_word_paragraph);
 
-	var _generate_lipsum = __webpack_require__(187);
+	var _static_text = __webpack_require__(191);
 
-	var _generate_lipsum2 = _interopRequireDefault(_generate_lipsum);
+	var _static_text2 = _interopRequireDefault(_static_text);
 
-	var _latin_words = __webpack_require__(188);
+	var _latin_words = __webpack_require__(192);
 
 	var _latin_words2 = _interopRequireDefault(_latin_words);
 
@@ -21469,7 +21469,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var textBlock = (0, _generate_lipsum2.default)(_latin_words2.default);
+	var textBlock = (0, _random_word_paragraph2.default)(_latin_words2.default);
 
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
@@ -21486,7 +21486,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { id: 'app-container' },
-	        _react2.default.createElement(_Header2.default, { title: _staticText2.default.appInfo.title }),
+	        _react2.default.createElement(_Header2.default, { title: _static_text2.default.appInfo.title }),
 	        _react2.default.createElement(_ClipboardBtn2.default, { clipboardText: textBlock }),
 	        _react2.default.createElement(_TextBlock2.default, { id: 'testTarget', text: textBlock })
 	      );
@@ -22478,87 +22478,253 @@
 
 /***/ },
 /* 187 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	'use strict'
+	'use strict';
 
-	import { capitalize, randomNumberBetween, shuffleItems } from './utils'
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = randomWordParagraph;
 
-	// generate a single text block with a min/max range.
+	var _utils = __webpack_require__(188);
 
-	export default function randomWordParagraph (srcWords) {
-	  const totalWords = randomNumberBetween(20, 25)
-	  const maxWordLength = 8
-	  const wordCollection = shuffleItems(srcWords).slice(0, totalWords)
-	  let wordQty
+	function randomWordParagraph(srcWords) {
+	  var totalWords = (0, _utils.randomNumberBetween)(20, 25);
+	  var wordCollection = (0, _utils.shuffleItems)(srcWords).slice(0, totalWords);
 
-	  return makeParagraph()
+	  return makeParagraph();
 
-	  function makeParagraph () {
-	    let paragraph = []
-	    let wordsUsed = 0
-	    let sentenceWordQty
+	  function makeParagraph() {
+	    var paragraph = [];
+	    var wordsUsed = 0;
+	    var sentenceWordQty = void 0;
 
 	    while (wordsUsed < totalWords) {
-	      sentenceWordQty = randomNumberBetween(3, 8)
-	      paragraph.push(makeSentence(wordsUsed, sentenceWordQty))
-	      wordsUsed += sentenceWordQty
+	      sentenceWordQty = (0, _utils.randomNumberBetween)(3, 8);
+	      paragraph.push(makeSentence(wordsUsed, sentenceWordQty));
+	      wordsUsed += sentenceWordQty;
 	    }
-	    return paragraph.join(' ')
+	    return paragraph.join(' ');
 	  }
 
-	  function makeSentence (start, length) {
-	    const end = start + length
-	    let sentence = wordCollection.slice(start, end)
-	    sentence[sentence.length - 1] += '.'
-	    sentence[0] = capitalize(sentence[0])
+	  function makeSentence(start, length) {
+	    var end = start + length;
+	    var sentence = wordCollection.slice(start, end);
+	    sentence[sentence.length - 1] += '.';
+	    sentence[0] = (0, _utils.capitalize)(sentence[0]);
 
-	    return sentence.join(' ')
+	    return sentence.join(' ');
 	  }
 	}
 
-
 /***/ },
 /* 188 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
-	const LATIN_WORDS = [
-	  'ac',
-	  'acceptus',
-	  'accumsan',
-	  'adsum',
-	  'adipiscing',
-	  'aliquantum',
-	  'balbus',
-	  'blandior',
-	  'caecus',
-	  'cavus',
-	  'cognatus',
-	  'consectetur',
-	  'decorus',
-	  'desparatus',
-	  'elit',
-	  'eros',
-	  'flax',
-	  'iaculis',
-	  'ipsum',
-	  'libero',
-	  'lorem',
-	  'luctus',
-	  'placerat',
-	  'sem',
-	  'tristique',
-	  'ullamcorper',
-	  'ut',
-	  'vehicula',
-	  'vestibulum'
-	]
+	'use strict';
 
-	export default LATIN_WORDS
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.capitalize = exports.shuffleItems = exports.randomNumberBetween = undefined;
 
+	var _randomNumber = __webpack_require__(189);
+
+	var _randomNumber2 = _interopRequireDefault(_randomNumber);
+
+	var _shuffleArray = __webpack_require__(190);
+
+	var _shuffleArray2 = _interopRequireDefault(_shuffleArray);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var randomNumberBetween = exports.randomNumberBetween = function randomNumberBetween(min, max) {
+	  return (0, _randomNumber2.default)({
+	    min: min,
+	    max: max,
+	    integer: true
+	  });
+	};
+
+	var shuffleItems = exports.shuffleItems = function shuffleItems(items) {
+	  return (0, _shuffleArray2.default)(items);
+	};
+
+	var capitalize = exports.capitalize = function capitalize(str) {
+	  return str[0].toUpperCase() + str.substr(1);
+	};
 
 /***/ },
 /* 189 */
+/***/ function(module, exports) {
+
+	void function(root){
+
+	  function defaults(options){
+	    var options = options || {}
+	    var min = options.min
+	    var max = options.max
+	    var integer = options.integer || false
+	    if ( min == null && max == null ) {
+	      min = 0
+	      max = 1
+	    } else if ( min == null ) {
+	      min = max - 1
+	    } else if ( max == null ) {
+	      max = min + 1
+	    }
+	    if ( max < min ) throw new Error('invalid options, max must be >= min')
+	    return {
+	      min:     min
+	    , max:     max
+	    , integer: integer
+	    }
+	  }
+
+	  function random(options){
+	    options = defaults(options)
+	    if ( options.max === options.min ) return options.min
+	    var r = Math.random() * (options.max - options.min + Number(!!options.integer)) + options.min
+	    return options.integer ? Math.floor(r) : r
+	  }
+
+	  function generator(options){
+	    options = defaults(options)
+	    return function(min, max, integer){
+	      options.min     = min != null ? min : options.min
+	      options.max     = max != null ? max : options.max
+	      options.integer = integer != null ? integer : options.integer
+	      return random(options)
+	    }
+	  }
+
+	  module.exports =  random
+	  module.exports.generator = generator
+	  module.exports.defaults = defaults
+	}(this)
+
+
+/***/ },
+/* 190 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	/**
+	 * Randomize the order of the elements in a given array.
+	 * @param {Array} arr - The given array.
+	 * @param {Object} [options] - Optional configuration options.
+	 * @param {Boolean} [options.copy] - Sets if should return a shuffled copy of the given array. By default it's a falsy value.
+	 * @param {Function} [options.rng] - Specifies a custom random number generator.
+	 * @returns {Array}
+	 */
+	function shuffle(arr, options) {
+
+	  if (!Array.isArray(arr)) {
+	    throw new Error('shuffle expect an array as parameter.');
+	  }
+
+	  options = options || {};
+
+	  var collection = arr,
+	      len = arr.length,
+	      rng = options.rng || Math.random,
+	      random,
+	      temp;
+
+	  if (options.copy === true) {
+	    collection = arr.slice();
+	  }
+
+	  while (len) {
+	    random = Math.floor(rng() * len);
+	    len -= 1;
+	    temp = collection[len];
+	    collection[len] = collection[random];
+	    collection[random] = temp;
+	  }
+
+	  return collection;
+	};
+
+	/**
+	 * Pick one or more random elements from the given array.
+	 * @param {Array} arr - The given array.
+	 * @param {Object} [options] - Optional configuration options.
+	 * @param {Number} [options.picks] - Specifies how many random elements you want to pick. By default it picks 1.
+	 * @param {Function} [options.rng] - Specifies a custom random number generator.
+	 * @returns {Object}
+	 */
+	shuffle.pick = function(arr, options) {
+
+	  if (!Array.isArray(arr)) {
+	    throw new Error('shuffle.pick() expect an array as parameter.');
+	  }
+
+	  options = options || {};
+
+	  var rng = options.rng || Math.random,
+	      picks = options.picks || 1;
+
+	  if (typeof picks === 'number' && picks !== 1) {
+	    var len = arr.length,
+	        collection = arr.slice(),
+	        random = [],
+	        index;
+
+	    while (picks && len) {
+	      index = Math.floor(rng() * len);
+	      random.push(collection[index]);
+	      collection.splice(index, 1);
+	      len -= 1;
+	      picks -= 1;
+	    }
+
+	    return random;
+	  }
+
+	  return arr[Math.floor(rng() * arr.length)];
+	};
+
+	/**
+	 * Expose
+	 */
+	module.exports = shuffle;
+
+
+/***/ },
+/* 191 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var STATIC_TEXT = {
+	  appInfo: {
+	    title: 'Morem Ipsum'
+	  }
+	};
+
+	exports.default = STATIC_TEXT;
+
+/***/ },
+/* 192 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var LATIN_WORDS = ['ac', 'acceptus', 'accumsan', 'adsum', 'adipiscing', 'aliquantum', 'balbus', 'blandior', 'caecus', 'cavus', 'cognatus', 'consectetur', 'decorus', 'desparatus', 'elit', 'eros', 'flax', 'iaculis', 'ipsum', 'libero', 'lorem', 'luctus', 'placerat', 'sem', 'tristique', 'ullamcorper', 'ut', 'vehicula', 'vestibulum'];
+
+	exports.default = LATIN_WORDS;
+
+/***/ },
+/* 193 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
