@@ -2,8 +2,7 @@ import React from 'react'
 import Header from './Header'
 import TextBlock from './TextBlock'
 import ClipboardBtn from './ClipboardBtn'
-import staticText from '../data/staticText'
-import randomWordParagraph from '../../libs/generate_lipsum'
+import randomWordParagraph from '../../libs/random_word_paragraph'
 import LATIN_WORDS from '../../libs/latin_words'
 
 const textBlock = randomWordParagraph(LATIN_WORDS)

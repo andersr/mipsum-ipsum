@@ -2,19 +2,11 @@
 
 import { capitalize, randomNumberBetween, shuffleItems } from './utils'
 
-// generate a single text block with a min/max range.
-
 export default function randomWordParagraph (srcWords) {
   const totalWords = randomNumberBetween(20, 25)
-  const maxWordLength = 8
   const wordCollection = shuffleItems(srcWords).slice(0, totalWords)
-  let wordQty
 
   return makeParagraph()
-
-  // console.log('newParagraph, ', newParagraph)
-  //
-  // return newParagraph
 
   function makeParagraph () {
     let paragraph = []

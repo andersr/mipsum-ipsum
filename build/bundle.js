@@ -45,7 +45,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(1);
-	module.exports = __webpack_require__(193);
+	module.exports = __webpack_require__(189);
 
 
 /***/ },
@@ -21449,9 +21449,17 @@
 
 	var _ClipboardBtn2 = _interopRequireDefault(_ClipboardBtn);
 
-	var _staticText = __webpack_require__(187);
+	var _staticText = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../data/staticText\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 
 	var _staticText2 = _interopRequireDefault(_staticText);
+
+	var _generate_lipsum = __webpack_require__(187);
+
+	var _generate_lipsum2 = _interopRequireDefault(_generate_lipsum);
+
+	var _latin_words = __webpack_require__(188);
+
+	var _latin_words2 = _interopRequireDefault(_latin_words);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21461,13 +21469,7 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	// import SRC_WORDS from './latin_words'
-
-	var SRC_WORDS = __webpack_require__(188);
-	var lipsum = __webpack_require__(189);
-	var lipsumBlock = lipsum.randomWordParagraph(SRC_WORDS);
-
-	// console.log(lipsumBlock)
+	var textBlock = (0, _generate_lipsum2.default)(_latin_words2.default);
 
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
@@ -21485,8 +21487,8 @@
 	        'div',
 	        { id: 'app-container' },
 	        _react2.default.createElement(_Header2.default, { title: _staticText2.default.appInfo.title }),
-	        _react2.default.createElement(_ClipboardBtn2.default, { clipboardText: lipsumBlock }),
-	        _react2.default.createElement(_TextBlock2.default, { id: 'testTarget', text: lipsumBlock })
+	        _react2.default.createElement(_ClipboardBtn2.default, { clipboardText: textBlock }),
+	        _react2.default.createElement(_TextBlock2.default, { id: 'testTarget', text: textBlock })
 	      );
 	    }
 	  }]);
@@ -22478,33 +22480,66 @@
 /* 187 */
 /***/ function(module, exports) {
 
-	'use strict';
+	'use strict'
 
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	var staticText = {
-	  appInfo: {
-	    title: 'Morem Ipsum'
-	  },
-	  lipsumText: {
-	    paragraphBlock: 'Lorem ipsum elit eros ac a a adipiscing ullamcorper luctus in scelerisque montes mollis lorem sem ut. Vestibulum consectetur iaculis sociosqu ac sem vestibulum eu a tristique placerat eget libero ullamcorper ullamcorper vehicula accumsan adipiscing habitant.'
+	import { capitalize, randomNumberBetween, shuffleItems } from './utils'
+
+	// generate a single text block with a min/max range.
+
+	export default function randomWordParagraph (srcWords) {
+	  const totalWords = randomNumberBetween(20, 25)
+	  const maxWordLength = 8
+	  const wordCollection = shuffleItems(srcWords).slice(0, totalWords)
+	  let wordQty
+
+	  return makeParagraph()
+
+	  function makeParagraph () {
+	    let paragraph = []
+	    let wordsUsed = 0
+	    let sentenceWordQty
+
+	    while (wordsUsed < totalWords) {
+	      sentenceWordQty = randomNumberBetween(3, 8)
+	      paragraph.push(makeSentence(wordsUsed, sentenceWordQty))
+	      wordsUsed += sentenceWordQty
+	    }
+	    return paragraph.join(' ')
 	  }
-	};
 
-	exports.default = staticText;
+	  function makeSentence (start, length) {
+	    const end = start + length
+	    let sentence = wordCollection.slice(start, end)
+	    sentence[sentence.length - 1] += '.'
+	    sentence[0] = capitalize(sentence[0])
+
+	    return sentence.join(' ')
+	  }
+	}
+
 
 /***/ },
 /* 188 */
 /***/ function(module, exports) {
 
-	module.exports = [
+	const LATIN_WORDS = [
 	  'ac',
+	  'acceptus',
 	  'accumsan',
+	  'adsum',
 	  'adipiscing',
+	  'aliquantum',
+	  'balbus',
+	  'blandior',
+	  'caecus',
+	  'cavus',
+	  'cognatus',
 	  'consectetur',
+	  'decorus',
+	  'desparatus',
 	  'elit',
 	  'eros',
+	  'flax',
 	  'iaculis',
 	  'ipsum',
 	  'libero',
@@ -22519,212 +22554,11 @@
 	  'vestibulum'
 	]
 
+	export default LATIN_WORDS
+
 
 /***/ },
 /* 189 */
-/***/ function(module, exports, __webpack_require__) {
-
-	/* eslint-disable */
-	'use strict'
-
-	var HELPERS = __webpack_require__(190)
-
-	exports.randomWordParagraph = function (srcWords) {
-
-	  function createSentence (wordQty) {
-	    var words = []
-	    var shuffledWords = HELPERS.shuffleItems(srcWords)
-
-	    for (var i = 0; i < wordQty; i++) {
-	      words.push(shuffledWords[i])
-	    }
-	    var sentence = words.join(' ')
-	    sentence += '.'
-	    var capitalized = sentence[0].toUpperCase() + sentence.substr(1);
-	    return capitalized
-	  }
-
-	  function createParagraph () {
-	    var sentenceQty = HELPERS.getRandomNumberBetween(2,4)
-	    var textBlock = []
-	    var wordQty
-	    for (var i = 0; i < sentenceQty; i++) {
-	      wordQty = HELPERS.getRandomNumberBetween(3,7)
-	      textBlock.push(createSentence(wordQty))
-	    }
-
-	    return textBlock.join(' ')
-	  }
-	  return createParagraph()
-	}
-
-	//REFACTOR: use up entire wordList before creating new one
-
-
-/***/ },
-/* 190 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var randomNumber = __webpack_require__(191)
-	var shuffle = __webpack_require__(192)
-
-	exports.getRandomNumberBetween = function (min, max) {
-	  return randomNumber({
-	    min: min,
-	    max: max,
-	    integer: true
-	  })
-	}
-
-	exports.shuffleItems = function (items) {
-	  return shuffle(items)
-	}
-
-	// exports.arrayIsEmpty = function (arr) {
-	//
-	// }
-
-
-/***/ },
-/* 191 */
-/***/ function(module, exports) {
-
-	void function(root){
-
-	  function defaults(options){
-	    var options = options || {}
-	    var min = options.min
-	    var max = options.max
-	    var integer = options.integer || false
-	    if ( min == null && max == null ) {
-	      min = 0
-	      max = 1
-	    } else if ( min == null ) {
-	      min = max - 1
-	    } else if ( max == null ) {
-	      max = min + 1
-	    }
-	    if ( max < min ) throw new Error('invalid options, max must be >= min')
-	    return {
-	      min:     min
-	    , max:     max
-	    , integer: integer
-	    }
-	  }
-
-	  function random(options){
-	    options = defaults(options)
-	    if ( options.max === options.min ) return options.min
-	    var r = Math.random() * (options.max - options.min + Number(!!options.integer)) + options.min
-	    return options.integer ? Math.floor(r) : r
-	  }
-
-	  function generator(options){
-	    options = defaults(options)
-	    return function(min, max, integer){
-	      options.min     = min != null ? min : options.min
-	      options.max     = max != null ? max : options.max
-	      options.integer = integer != null ? integer : options.integer
-	      return random(options)
-	    }
-	  }
-
-	  module.exports =  random
-	  module.exports.generator = generator
-	  module.exports.defaults = defaults
-	}(this)
-
-
-/***/ },
-/* 192 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	/**
-	 * Randomize the order of the elements in a given array.
-	 * @param {Array} arr - The given array.
-	 * @param {Object} [options] - Optional configuration options.
-	 * @param {Boolean} [options.copy] - Sets if should return a shuffled copy of the given array. By default it's a falsy value.
-	 * @param {Function} [options.rng] - Specifies a custom random number generator.
-	 * @returns {Array}
-	 */
-	function shuffle(arr, options) {
-
-	  if (!Array.isArray(arr)) {
-	    throw new Error('shuffle expect an array as parameter.');
-	  }
-
-	  options = options || {};
-
-	  var collection = arr,
-	      len = arr.length,
-	      rng = options.rng || Math.random,
-	      random,
-	      temp;
-
-	  if (options.copy === true) {
-	    collection = arr.slice();
-	  }
-
-	  while (len) {
-	    random = Math.floor(rng() * len);
-	    len -= 1;
-	    temp = collection[len];
-	    collection[len] = collection[random];
-	    collection[random] = temp;
-	  }
-
-	  return collection;
-	};
-
-	/**
-	 * Pick one or more random elements from the given array.
-	 * @param {Array} arr - The given array.
-	 * @param {Object} [options] - Optional configuration options.
-	 * @param {Number} [options.picks] - Specifies how many random elements you want to pick. By default it picks 1.
-	 * @param {Function} [options.rng] - Specifies a custom random number generator.
-	 * @returns {Object}
-	 */
-	shuffle.pick = function(arr, options) {
-
-	  if (!Array.isArray(arr)) {
-	    throw new Error('shuffle.pick() expect an array as parameter.');
-	  }
-
-	  options = options || {};
-
-	  var rng = options.rng || Math.random,
-	      picks = options.picks || 1;
-
-	  if (typeof picks === 'number' && picks !== 1) {
-	    var len = arr.length,
-	        collection = arr.slice(),
-	        random = [],
-	        index;
-
-	    while (picks && len) {
-	      index = Math.floor(rng() * len);
-	      random.push(collection[index]);
-	      collection.splice(index, 1);
-	      len -= 1;
-	      picks -= 1;
-	    }
-
-	    return random;
-	  }
-
-	  return arr[Math.floor(rng() * arr.length)];
-	};
-
-	/**
-	 * Expose
-	 */
-	module.exports = shuffle;
-
-
-/***/ },
-/* 193 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
