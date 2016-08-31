@@ -38,7 +38,7 @@ const config = {
     loaders: [{
       test: /\.jsx?$/,
       loaders: ['babel'],
-      include: path.join(__dirname, 'app')
+      include: [path.join(__dirname, 'app'), path.join(__dirname, 'libs')]
     },
     {
       test: /\.scss$/,
