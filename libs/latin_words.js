@@ -1,10 +1,21 @@
-module.exports = [
+const LATIN_WORDS = [
   'ac',
+  'acceptus',
   'accumsan',
+  'adsum',
   'adipiscing',
+  'aliquantum',
+  'balbus',
+  'blandior',
+  'caecus',
+  'cavus',
+  'cognatus',
   'consectetur',
+  'decorus',
+  'desparatus',
   'elit',
   'eros',
+  'flax',
   'iaculis',
   'ipsum',
   'libero',
@@ -18,3 +29,5 @@ module.exports = [
   'vehicula',
   'vestibulum'
 ]
+
+export default LATIN_WORDS
