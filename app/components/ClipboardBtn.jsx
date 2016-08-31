@@ -23,13 +23,17 @@ export default class ClipboardBtn extends React.Component {
     this.clipboard.destroy()
   }
 
+  handleClick (e) {
+    e.preventDefault()
+  }
+
   render () {
     const btnClasses = classnames('clipboard-btn', {
       'copied': this.state.copied
     })
 
     return (
-      <button className={btnClasses} data-clipboard-text={this.props.clipboardText}>{this.props.label}</button>
+      <button className={btnClasses} data-clipboard-text={this.props.clipboardText} onClick={this.handleClick.bind(this)}>{this.props.label}</button>
     )
   }
 }

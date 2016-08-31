@@ -1,5 +1,6 @@
 import React from 'react'
 import List from '../components/List'
+import ClipboardBtn from '../components/ClipboardBtn'
 // import TextBlock from './TextBlock'
 // import ClipboardBtn from './ClipboardBtn'
 import randomWordParagraph from '../../libs/random_word_paragraph'
@@ -12,19 +13,33 @@ export default class ListContainer extends React.Component {
   constructor () {
     super()
     this.state = {
-      listItems: []
+      listItems: [],
+      listContent: ''
     }
   }
+
+  // mergeTextBlocks () {
+  //   const mergedTextBlocks = this.state.listItems.join(' ')
+  //
+  //   this.setState({
+  //     listContent: mergedTextBlocks
+  //   })
+  // }
   componentDidMount () {
-    const defaultBlock = [randomWordParagraph(LATIN_WORDS)]
-    // console.log('test ', test)
+    const defaultBlock = randomWordParagraph(LATIN_WORDS)
     this.setState({
-      listItems: this.state.listItems.concat(defaultBlock)
+      listItems: this.state.listItems.concat([defaultBlock]),
+      listContent: defaultBlock
     })
   }
 
   render () {
-    console.log('list items: ', this.state.listItems)
-    return <List listItems={this.state.listItems} />
+    // console.log('list items: ', this.state.listItems)
+    return (
+      <div>
+        <ClipboardBtn clipboardText={this.state.listContent} />
+        <List listItems={this.state.listItems} />
+      </div>
+    )
   }
 }
