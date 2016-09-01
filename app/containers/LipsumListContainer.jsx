@@ -10,27 +10,31 @@ export default class LipsumListContainer extends React.Component {
     this.state = {
       listItems: []
     }
-    this.newBlock = data => randomWordParagraph(data)
+  }
+
+  newLipsumBlock (data) {
+    return randomWordParagraph(data)
   }
 
   addTextBlock () {
     this.setState({
-      listItems: this.state.listItems.concat([this.newBlock(this.props.lipsumData)])
+      listItems: this.state.listItems.concat([this.newLipsumBlock(this.props.lipsumData)])
     })
   }
 
   componentDidMount () {
     this.setState({
-      listItems: this.state.listItems.concat([this.newBlock(this.props.lipsumData)])
+      listItems: this.state.listItems.concat([this.newLipsumBlock(this.props.lipsumData)])
     })
   }
 
   render () {
-    const mergedTextBlocks = this.state.listItems.join(' \n\n')
+    const newParagraph = ' \n\n'
+    const textBlocks = this.state.listItems.join(newParagraph)
 
     return (
       <div>
-        <ClipboardBtn clipboardText={mergedTextBlocks} />
+        <ClipboardBtn clipboardText={textBlocks} />
         <List listItems={this.state.listItems} />
         <Btn label={"Add block"} handleClick={this.addTextBlock.bind(this)} />
       </div>

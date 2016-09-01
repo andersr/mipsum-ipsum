@@ -21441,13 +21441,17 @@
 
 	var _Header2 = _interopRequireDefault(_Header);
 
-	var _ListContainer = __webpack_require__(175);
+	var _LipsumListContainer = __webpack_require__(175);
 
-	var _ListContainer2 = _interopRequireDefault(_ListContainer);
+	var _LipsumListContainer2 = _interopRequireDefault(_LipsumListContainer);
 
-	var _static_text = __webpack_require__(194);
+	var _static_text = __webpack_require__(193);
 
 	var _static_text2 = _interopRequireDefault(_static_text);
+
+	var _latin_words = __webpack_require__(194);
+
+	var _latin_words2 = _interopRequireDefault(_latin_words);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21456,15 +21460,6 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	// import TextBlock from './TextBlock'
-	// import ClipboardBtn from './ClipboardBtn'
-
-	// import randomWordParagraph from '../../libs/random_word_paragraph'
-
-
-	// import LATIN_WORDS from '../../libs/latin_words'
-
-	// const textBlock = randomWordParagraph(LATIN_WORDS)
 
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
@@ -21482,7 +21477,7 @@
 	        'div',
 	        { id: 'app-container' },
 	        _react2.default.createElement(_Header2.default, { title: _static_text2.default.appInfo.title }),
-	        _react2.default.createElement(_ListContainer2.default, null)
+	        _react2.default.createElement(_LipsumListContainer2.default, { lipsumData: _latin_words2.default })
 	      );
 	    }
 	  }]);
@@ -21559,10 +21554,6 @@
 
 	var _random_word_paragraph2 = _interopRequireDefault(_random_word_paragraph);
 
-	var _latin_words = __webpack_require__(193);
-
-	var _latin_words2 = _interopRequireDefault(_latin_words);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21571,36 +21562,35 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var ListContainer = function (_React$Component) {
-	  _inherits(ListContainer, _React$Component);
+	var LipsumListContainer = function (_React$Component) {
+	  _inherits(LipsumListContainer, _React$Component);
 
-	  function ListContainer() {
-	    _classCallCheck(this, ListContainer);
+	  function LipsumListContainer(props) {
+	    _classCallCheck(this, LipsumListContainer);
 
-	    var _this = _possibleConstructorReturn(this, (ListContainer.__proto__ || Object.getPrototypeOf(ListContainer)).call(this));
+	    var _this = _possibleConstructorReturn(this, (LipsumListContainer.__proto__ || Object.getPrototypeOf(LipsumListContainer)).call(this, props));
 
 	    _this.state = {
 	      listItems: []
 	    };
-	    _this.sourceWords = _latin_words2.default;
+	    _this.newBlock = function (data) {
+	      return (0, _random_word_paragraph2.default)(data);
+	    };
 	    return _this;
 	  }
 
-	  _createClass(ListContainer, [{
+	  _createClass(LipsumListContainer, [{
 	    key: 'addTextBlock',
 	    value: function addTextBlock() {
-	      var newBlock = (0, _random_word_paragraph2.default)(this.sourceWords);
 	      this.setState({
-	        listItems: this.state.listItems.concat([newBlock])
+	        listItems: this.state.listItems.concat([this.newBlock(this.props.lipsumData)])
 	      });
 	    }
 	  }, {
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      var defaultBlock = (0, _random_word_paragraph2.default)(this.sourceWords);
 	      this.setState({
-	        listItems: this.state.listItems.concat([defaultBlock]),
-	        listContent: defaultBlock
+	        listItems: this.state.listItems.concat([this.newBlock(this.props.lipsumData)])
 	      });
 	    }
 	  }, {
@@ -21618,10 +21608,15 @@
 	    }
 	  }]);
 
-	  return ListContainer;
+	  return LipsumListContainer;
 	}(_react2.default.Component);
 
-	exports.default = ListContainer;
+	exports.default = LipsumListContainer;
+
+
+	LipsumListContainer.propTypes = {
+	  lipsumData: _react2.default.PropTypes.array.isRequired
+	};
 
 /***/ },
 /* 176 */
@@ -22839,9 +22834,13 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var LATIN_WORDS = ['ac', 'acceptus', 'accumsan', 'adsum', 'adipiscing', 'aliquantum', 'balbus', 'blandior', 'caecus', 'cavus', 'cognatus', 'consectetur', 'decorus', 'desparatus', 'elit', 'eros', 'flax', 'iaculis', 'ipsum', 'libero', 'lorem', 'luctus', 'placerat', 'sem', 'tristique', 'ullamcorper', 'ut', 'vehicula', 'vestibulum'];
+	var STATIC_TEXT = {
+	  appInfo: {
+	    title: 'Morem Ipsum'
+	  }
+	};
 
-	exports.default = LATIN_WORDS;
+	exports.default = STATIC_TEXT;
 
 /***/ },
 /* 194 */
@@ -22852,13 +22851,9 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	var STATIC_TEXT = {
-	  appInfo: {
-	    title: 'Morem Ipsum'
-	  }
-	};
+	var LATIN_WORDS = ['ac', 'acceptus', 'accumsan', 'adsum', 'adipiscing', 'aliquantum', 'balbus', 'blandior', 'caecus', 'cavus', 'cognatus', 'consectetur', 'decorus', 'desparatus', 'elit', 'eros', 'flax', 'iaculis', 'ipsum', 'libero', 'lorem', 'luctus', 'placerat', 'sem', 'tristique', 'ullamcorper', 'ut', 'vehicula', 'vestibulum'];
 
-	exports.default = STATIC_TEXT;
+	exports.default = LATIN_WORDS;
 
 /***/ },
 /* 195 */
