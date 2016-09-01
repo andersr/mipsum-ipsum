@@ -11,13 +11,15 @@ body {
 }
 
 h1 {
-	// font-family: $brand-font;
-	// font-weight: 300;
-	font-size: 1.3em;
+	font-family: $brand-font;
+	font-weight: 400;
+	font-size: 1.4em;
 }
 
 .secondary-text {
-	font-size: 0.9em;
+	font-family: $brand-font;
+	font-weight: 300;
+	font-size: 1.1em;
 	color: $color-gray-5;
-	font-style: italic;
+	// font-style: italic;
 }

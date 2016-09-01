@@ -3,11 +3,10 @@
 @import "config/fonts";
 @import "config/colors";
 
-
-@import "helpers/flex_layout";
 @import "base";
-@import "layout";
-@import "theme";
+@import "layouts/flex_layout";
+@import "layouts/full_height";
 
-@import "components/three_col_row";
 @import "components/clipboard_btn";
+
+@import "theme";
