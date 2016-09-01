@@ -44,6 +44,14 @@ const config = {
       test: /\.scss$/,
       loader: ExtractTextPlugin.extract('style', 'css!sass'),
       include: PATHS.style
+    },
+    {
+      test: /\.css$/,
+      loader: 'style!css'
+    },
+    {
+      test: /\.(otf|eot|svg|ttf|woff|woff2).*$/,
+      loader: 'url?limit=8192'
     }]
   },
   resolve: {

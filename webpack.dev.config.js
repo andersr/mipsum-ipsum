@@ -4,7 +4,8 @@ const validate = require('webpack-validator')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const PATHS = {
-  style: path.join(__dirname, 'app/styles/main.scss')
+  style: path.join(__dirname, 'app/styles/main.scss'),
+  icons: path.join(__dirname, 'node_modules/octicons/index.scss')
 }
 
 var config = {
@@ -38,7 +39,15 @@ var config = {
       {
         test: /\.scss$/,
         loaders: ['style', 'css', 'sass'],
-        include: PATHS.style
+        include: [ PATHS.style, PATHS.icons ]
+      },
+      {
+        test: /\.css$/,
+        loader: 'style!css'
+      },
+      {
+        test: /\.(otf|eot|svg|ttf|woff|woff2).*$/,
+        loader: 'url?limit=8192'
       }
     ]
   },
