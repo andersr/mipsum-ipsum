@@ -1,5 +1,6 @@
 import React from 'react'
-import Header from './Header'
+import AppHeader from './AppHeader'
+import TextHeading from './TextHeading'
 import LipsumListContainer from '../containers/LipsumListContainer'
 import STATIC_TEXT from '../../libs/static_text'
 import LATIN_WORDS from '../../libs/latin_words'
@@ -11,10 +12,10 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div id="app-container">
-        <Header title={STATIC_TEXT.appInfo.title} />
+      <div id='app-container'>
+        <TextHeading text={STATIC_TEXT.appInfo.title} />
         <LipsumListContainer lipsumData={LATIN_WORDS} />
       </div>
-    );
+    )
   }
 }

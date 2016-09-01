@@ -410,11 +410,17 @@ body {
 
 body {
   background-color: #EEEEEE;
-  color: #212121; }
+  color: #212121;
+  font-family: "Lucida Bright", Georgia, serif;
+  font-size: 18px;
+  line-height: 20px; }
 
 #app-container {
   background-color: white;
   color: #212121; }
+
+h1 {
+  font-size: 1.3em; }
 
 .clipboard-btn {
   position: relative; }

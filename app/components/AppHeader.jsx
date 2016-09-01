@@ -1,12 +1,12 @@
 import React from 'react'
 
-const Header = props =>
+const AppHeader = props =>
   <div className='flex-row flex-vertical-middle flex-centered'>
 	  <h1>{props.title}</h1>
 	</div>
 
-export default Header
+export default AppHeader
 
-Header.propTypes = {
+AppHeader.propTypes = {
   title: React.PropTypes.string.isRequired
 }
