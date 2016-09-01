@@ -45,7 +45,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(1);
-	module.exports = __webpack_require__(195);
+	module.exports = __webpack_require__(197);
 
 
 /***/ },
@@ -21437,19 +21437,23 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Header = __webpack_require__(174);
+	var _AppHeader = __webpack_require__(174);
 
-	var _Header2 = _interopRequireDefault(_Header);
+	var _AppHeader2 = _interopRequireDefault(_AppHeader);
 
-	var _LipsumListContainer = __webpack_require__(175);
+	var _TextHeading = __webpack_require__(175);
+
+	var _TextHeading2 = _interopRequireDefault(_TextHeading);
+
+	var _LipsumListContainer = __webpack_require__(177);
 
 	var _LipsumListContainer2 = _interopRequireDefault(_LipsumListContainer);
 
-	var _static_text = __webpack_require__(193);
+	var _static_text = __webpack_require__(195);
 
 	var _static_text2 = _interopRequireDefault(_static_text);
 
-	var _latin_words = __webpack_require__(194);
+	var _latin_words = __webpack_require__(196);
 
 	var _latin_words2 = _interopRequireDefault(_latin_words);
 
@@ -21476,7 +21480,7 @@
 	      return _react2.default.createElement(
 	        'div',
 	        { id: 'app-container' },
-	        _react2.default.createElement(_Header2.default, { title: _static_text2.default.appInfo.title }),
+	        _react2.default.createElement(_AppHeader2.default, { title: _static_text2.default.appInfo.title, tagline: _static_text2.default.appInfo.tagline }),
 	        _react2.default.createElement(_LipsumListContainer2.default, { lipsumData: _latin_words2.default })
 	      );
 	    }
@@ -21501,29 +21505,105 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _TextHeading = __webpack_require__(175);
+
+	var _TextHeading2 = _interopRequireDefault(_TextHeading);
+
+	var _Paragraph = __webpack_require__(176);
+
+	var _Paragraph2 = _interopRequireDefault(_Paragraph);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var Header = function Header(props) {
+	var AppHeader = function AppHeader(props) {
 	  return _react2.default.createElement(
 	    'div',
-	    { className: 'flex-row flex-vertical-middle flex-centered' },
+	    { className: 'flex-row flex-vertical-baseline' },
 	    _react2.default.createElement(
-	      'h1',
-	      null,
-	      props.title
-	    )
+	      'div',
+	      { className: 'flex-main-content' },
+	      _react2.default.createElement(_TextHeading2.default, { text: props.title })
+	    ),
+	    _react2.default.createElement(_Paragraph2.default, { text: props.tagline, style: 'secondary-text' })
 	  );
 	};
 
-	exports.default = Header;
+	exports.default = AppHeader;
 
 
-	Header.propTypes = {
-	  title: _react2.default.PropTypes.string.isRequired
+	AppHeader.propTypes = {
+	  title: _react2.default.PropTypes.string.isRequired,
+	  tagline: _react2.default.PropTypes.string
 	};
 
 /***/ },
 /* 175 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var TextHeading = function TextHeading(props) {
+	  return _react2.default.createElement(props.level, { className: 'heading' }, props.text);
+	};
+
+	exports.default = TextHeading;
+
+
+	TextHeading.propTypes = {
+	  text: _react2.default.PropTypes.string.isRequired,
+	  level: _react2.default.PropTypes.oneOf(['h1', 'h2', 'h3', 'h4', 'h5', 'h6'])
+	};
+
+	TextHeading.defaultProps = {
+	  level: 'h1'
+	};
+
+	// const Heading = props => React.createElement(props.level, {className: "helper-full-width helper-centered" }, props.text)
+
+/***/ },
+/* 176 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Paragraph = function Paragraph(props) {
+	  return _react2.default.createElement(
+	    'p',
+	    { className: props.style },
+	    props.text
+	  );
+	};
+
+	exports.default = Paragraph;
+
+
+	Paragraph.propTypes = {
+	  text: _react2.default.PropTypes.string.isRequired,
+	  style: _react2.default.PropTypes.string
+	};
+
+/***/ },
+/* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21538,19 +21618,19 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _List = __webpack_require__(176);
+	var _List = __webpack_require__(178);
 
 	var _List2 = _interopRequireDefault(_List);
 
-	var _Btn = __webpack_require__(177);
+	var _Btn = __webpack_require__(179);
 
 	var _Btn2 = _interopRequireDefault(_Btn);
 
-	var _ClipboardBtn = __webpack_require__(178);
+	var _ClipboardBtn = __webpack_require__(180);
 
 	var _ClipboardBtn2 = _interopRequireDefault(_ClipboardBtn);
 
-	var _random_word_paragraph = __webpack_require__(189);
+	var _random_word_paragraph = __webpack_require__(191);
 
 	var _random_word_paragraph2 = _interopRequireDefault(_random_word_paragraph);
 
@@ -21622,7 +21702,7 @@
 	};
 
 /***/ },
-/* 176 */
+/* 178 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21659,7 +21739,7 @@
 	};
 
 /***/ },
-/* 177 */
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21695,7 +21775,7 @@
 	};
 
 /***/ },
-/* 178 */
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21710,11 +21790,11 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _clipboard = __webpack_require__(179);
+	var _clipboard = __webpack_require__(181);
 
 	var _clipboard2 = _interopRequireDefault(_clipboard);
 
-	var _classnames = __webpack_require__(188);
+	var _classnames = __webpack_require__(190);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -21790,12 +21870,12 @@
 	};
 
 /***/ },
-/* 179 */
+/* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
 	    if (true) {
-	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, __webpack_require__(180), __webpack_require__(182), __webpack_require__(183)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, __webpack_require__(182), __webpack_require__(184), __webpack_require__(185)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	    } else if (typeof exports !== "undefined") {
 	        factory(module, require('./clipboard-action'), require('tiny-emitter'), require('good-listener'));
 	    } else {
@@ -21954,12 +22034,12 @@
 	});
 
 /***/ },
-/* 180 */
+/* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
 	    if (true) {
-	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, __webpack_require__(181)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, __webpack_require__(183)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	    } else if (typeof exports !== "undefined") {
 	        factory(module, require('select'));
 	    } else {
@@ -22185,7 +22265,7 @@
 	});
 
 /***/ },
-/* 181 */
+/* 183 */
 /***/ function(module, exports) {
 
 	function select(element) {
@@ -22219,7 +22299,7 @@
 
 
 /***/ },
-/* 182 */
+/* 184 */
 /***/ function(module, exports) {
 
 	function E () {
@@ -22291,11 +22371,11 @@
 
 
 /***/ },
-/* 183 */
+/* 185 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var is = __webpack_require__(184);
-	var delegate = __webpack_require__(185);
+	var is = __webpack_require__(186);
+	var delegate = __webpack_require__(187);
 
 	/**
 	 * Validates all params and calls the right
@@ -22392,7 +22472,7 @@
 
 
 /***/ },
-/* 184 */
+/* 186 */
 /***/ function(module, exports) {
 
 	/**
@@ -22447,10 +22527,10 @@
 
 
 /***/ },
-/* 185 */
+/* 187 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var closest = __webpack_require__(186);
+	var closest = __webpack_require__(188);
 
 	/**
 	 * Delegates event to a selector.
@@ -22497,10 +22577,10 @@
 
 
 /***/ },
-/* 186 */
+/* 188 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var matches = __webpack_require__(187)
+	var matches = __webpack_require__(189)
 
 	module.exports = function (element, selector, checkYoSelf) {
 	  var parent = checkYoSelf ? element : element.parentNode
@@ -22513,7 +22593,7 @@
 
 
 /***/ },
-/* 187 */
+/* 189 */
 /***/ function(module, exports) {
 
 	
@@ -22558,7 +22638,7 @@
 	}
 
 /***/ },
-/* 188 */
+/* 190 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -22612,7 +22692,7 @@
 
 
 /***/ },
-/* 189 */
+/* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22622,7 +22702,7 @@
 	});
 	exports.default = randomWordParagraph;
 
-	var _utils = __webpack_require__(190);
+	var _utils = __webpack_require__(192);
 
 	function randomWordParagraph(srcWords) {
 	  var totalWords = (0, _utils.randomNumberBetween)(20, 25);
@@ -22654,7 +22734,7 @@
 	}
 
 /***/ },
-/* 190 */
+/* 192 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22664,11 +22744,11 @@
 	});
 	exports.capitalize = exports.shuffleItems = exports.randomNumberBetween = undefined;
 
-	var _randomNumber = __webpack_require__(191);
+	var _randomNumber = __webpack_require__(193);
 
 	var _randomNumber2 = _interopRequireDefault(_randomNumber);
 
-	var _shuffleArray = __webpack_require__(192);
+	var _shuffleArray = __webpack_require__(194);
 
 	var _shuffleArray2 = _interopRequireDefault(_shuffleArray);
 
@@ -22691,7 +22771,7 @@
 	};
 
 /***/ },
-/* 191 */
+/* 193 */
 /***/ function(module, exports) {
 
 	void function(root){
@@ -22741,7 +22821,7 @@
 
 
 /***/ },
-/* 192 */
+/* 194 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -22829,7 +22909,7 @@
 
 
 /***/ },
-/* 193 */
+/* 195 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -22839,14 +22919,15 @@
 	});
 	var STATIC_TEXT = {
 	  appInfo: {
-	    title: 'Morem Ipsum'
+	    title: 'Morem Ipsum',
+	    tagline: 'One-click Lorem Ipsum'
 	  }
 	};
 
 	exports.default = STATIC_TEXT;
 
 /***/ },
-/* 194 */
+/* 196 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -22859,7 +22940,7 @@
 	exports.default = LATIN_WORDS;
 
 /***/ },
-/* 195 */
+/* 197 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
