@@ -9,29 +9,20 @@ export default class ListContainer extends React.Component {
   constructor () {
     super()
     this.state = {
-      listItems: [],
-      listContent: ''
+      listItems: []
     }
+    this.sourceWords = LATIN_WORDS
   }
 
   addTextBlock () {
-    // add new textBlock
-    const newBlock = randomWordParagraph(LATIN_WORDS)
+    const newBlock = randomWordParagraph(this.sourceWords)
     this.setState({
       listItems: this.state.listItems.concat([newBlock])
-    }, this.mergeTextBlocks())
-  }
-
-  mergeTextBlocks () {
-    const mergedTextBlocks = this.state.listItems.join(' \n\n')
-
-    this.setState({
-      listContent: mergedTextBlocks
     })
   }
 
   componentDidMount () {
-    const defaultBlock = randomWordParagraph(LATIN_WORDS)
+    const defaultBlock = randomWordParagraph(this.sourceWords)
     this.setState({
       listItems: this.state.listItems.concat([defaultBlock]),
       listContent: defaultBlock
@@ -39,9 +30,11 @@ export default class ListContainer extends React.Component {
   }
 
   render () {
+    const mergedTextBlocks = this.state.listItems.join(' \n\n')
+
     return (
       <div>
-        <ClipboardBtn clipboardText={this.state.listContent} />
+        <ClipboardBtn clipboardText={mergedTextBlocks} />
         <List listItems={this.state.listItems} />
         <Btn label={"Add block"} handleClick={this.addTextBlock.bind(this)} />
       </div>

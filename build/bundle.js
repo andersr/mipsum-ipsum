@@ -45,7 +45,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(1);
-	module.exports = __webpack_require__(194);
+	module.exports = __webpack_require__(195);
 
 
 /***/ },
@@ -21445,7 +21445,7 @@
 
 	var _ListContainer2 = _interopRequireDefault(_ListContainer);
 
-	var _static_text = __webpack_require__(193);
+	var _static_text = __webpack_require__(194);
 
 	var _static_text2 = _interopRequireDefault(_static_text);
 
@@ -21547,15 +21547,19 @@
 
 	var _List2 = _interopRequireDefault(_List);
 
-	var _ClipboardBtn = __webpack_require__(177);
+	var _Btn = __webpack_require__(177);
+
+	var _Btn2 = _interopRequireDefault(_Btn);
+
+	var _ClipboardBtn = __webpack_require__(178);
 
 	var _ClipboardBtn2 = _interopRequireDefault(_ClipboardBtn);
 
-	var _random_word_paragraph = __webpack_require__(188);
+	var _random_word_paragraph = __webpack_require__(189);
 
 	var _random_word_paragraph2 = _interopRequireDefault(_random_word_paragraph);
 
-	var _latin_words = __webpack_require__(192);
+	var _latin_words = __webpack_require__(193);
 
 	var _latin_words2 = _interopRequireDefault(_latin_words);
 
@@ -21566,11 +21570,6 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	// import TextBlock from './TextBlock'
-	// import ClipboardBtn from './ClipboardBtn'
-
-	// import STATIC_TEXT from '../../libs/static_text'
-
 
 	var ListContainer = function (_React$Component) {
 	  _inherits(ListContainer, _React$Component);
@@ -21581,25 +21580,24 @@
 	    var _this = _possibleConstructorReturn(this, (ListContainer.__proto__ || Object.getPrototypeOf(ListContainer)).call(this));
 
 	    _this.state = {
-	      listItems: [],
-	      listContent: ''
+	      listItems: []
 	    };
+	    _this.sourceWords = _latin_words2.default;
 	    return _this;
 	  }
 
-	  // mergeTextBlocks () {
-	  //   const mergedTextBlocks = this.state.listItems.join(' ')
-	  //
-	  //   this.setState({
-	  //     listContent: mergedTextBlocks
-	  //   })
-	  // }
-
-
 	  _createClass(ListContainer, [{
+	    key: 'addTextBlock',
+	    value: function addTextBlock() {
+	      var newBlock = (0, _random_word_paragraph2.default)(this.sourceWords);
+	      this.setState({
+	        listItems: this.state.listItems.concat([newBlock])
+	      });
+	    }
+	  }, {
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      var defaultBlock = (0, _random_word_paragraph2.default)(_latin_words2.default);
+	      var defaultBlock = (0, _random_word_paragraph2.default)(this.sourceWords);
 	      this.setState({
 	        listItems: this.state.listItems.concat([defaultBlock]),
 	        listContent: defaultBlock
@@ -21608,12 +21606,14 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      // console.log('list items: ', this.state.listItems)
+	      var mergedTextBlocks = this.state.listItems.join(' \n\n');
+
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(_ClipboardBtn2.default, { clipboardText: this.state.listContent }),
-	        _react2.default.createElement(_List2.default, { listItems: this.state.listItems })
+	        _react2.default.createElement(_ClipboardBtn2.default, { clipboardText: mergedTextBlocks }),
+	        _react2.default.createElement(_List2.default, { listItems: this.state.listItems }),
+	        _react2.default.createElement(_Btn2.default, { label: "Add block", handleClick: this.addTextBlock.bind(this) })
 	      );
 	    }
 	  }]);
@@ -21670,17 +21670,53 @@
 	  value: true
 	});
 
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Btn = function Btn(props) {
+	  return _react2.default.createElement(
+	    'button',
+	    { onClick: props.handleClick },
+	    props.label
+	  );
+	};
+
+	exports.default = Btn;
+
+
+	Btn.propTypes = {
+	  handleClick: _react2.default.PropTypes.func.isRequired,
+	  label: _react2.default.PropTypes.string
+	};
+
+	Btn.defaultProps = {
+	  label: 'Click'
+	};
+
+/***/ },
+/* 178 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(2);
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _clipboard = __webpack_require__(178);
+	var _clipboard = __webpack_require__(179);
 
 	var _clipboard2 = _interopRequireDefault(_clipboard);
 
-	var _classnames = __webpack_require__(187);
+	var _classnames = __webpack_require__(188);
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
@@ -21756,12 +21792,12 @@
 	};
 
 /***/ },
-/* 178 */
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
 	    if (true) {
-	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, __webpack_require__(179), __webpack_require__(181), __webpack_require__(182)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, __webpack_require__(180), __webpack_require__(182), __webpack_require__(183)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	    } else if (typeof exports !== "undefined") {
 	        factory(module, require('./clipboard-action'), require('tiny-emitter'), require('good-listener'));
 	    } else {
@@ -21920,12 +21956,12 @@
 	});
 
 /***/ },
-/* 179 */
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (global, factory) {
 	    if (true) {
-	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, __webpack_require__(180)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [module, __webpack_require__(181)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory), __WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ? (__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 	    } else if (typeof exports !== "undefined") {
 	        factory(module, require('select'));
 	    } else {
@@ -22151,7 +22187,7 @@
 	});
 
 /***/ },
-/* 180 */
+/* 181 */
 /***/ function(module, exports) {
 
 	function select(element) {
@@ -22185,7 +22221,7 @@
 
 
 /***/ },
-/* 181 */
+/* 182 */
 /***/ function(module, exports) {
 
 	function E () {
@@ -22257,11 +22293,11 @@
 
 
 /***/ },
-/* 182 */
+/* 183 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var is = __webpack_require__(183);
-	var delegate = __webpack_require__(184);
+	var is = __webpack_require__(184);
+	var delegate = __webpack_require__(185);
 
 	/**
 	 * Validates all params and calls the right
@@ -22358,7 +22394,7 @@
 
 
 /***/ },
-/* 183 */
+/* 184 */
 /***/ function(module, exports) {
 
 	/**
@@ -22413,10 +22449,10 @@
 
 
 /***/ },
-/* 184 */
+/* 185 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var closest = __webpack_require__(185);
+	var closest = __webpack_require__(186);
 
 	/**
 	 * Delegates event to a selector.
@@ -22463,10 +22499,10 @@
 
 
 /***/ },
-/* 185 */
+/* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var matches = __webpack_require__(186)
+	var matches = __webpack_require__(187)
 
 	module.exports = function (element, selector, checkYoSelf) {
 	  var parent = checkYoSelf ? element : element.parentNode
@@ -22479,7 +22515,7 @@
 
 
 /***/ },
-/* 186 */
+/* 187 */
 /***/ function(module, exports) {
 
 	
@@ -22524,7 +22560,7 @@
 	}
 
 /***/ },
-/* 187 */
+/* 188 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -22578,7 +22614,7 @@
 
 
 /***/ },
-/* 188 */
+/* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22588,7 +22624,7 @@
 	});
 	exports.default = randomWordParagraph;
 
-	var _utils = __webpack_require__(189);
+	var _utils = __webpack_require__(190);
 
 	function randomWordParagraph(srcWords) {
 	  var totalWords = (0, _utils.randomNumberBetween)(20, 25);
@@ -22620,7 +22656,7 @@
 	}
 
 /***/ },
-/* 189 */
+/* 190 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22630,11 +22666,11 @@
 	});
 	exports.capitalize = exports.shuffleItems = exports.randomNumberBetween = undefined;
 
-	var _randomNumber = __webpack_require__(190);
+	var _randomNumber = __webpack_require__(191);
 
 	var _randomNumber2 = _interopRequireDefault(_randomNumber);
 
-	var _shuffleArray = __webpack_require__(191);
+	var _shuffleArray = __webpack_require__(192);
 
 	var _shuffleArray2 = _interopRequireDefault(_shuffleArray);
 
@@ -22657,7 +22693,7 @@
 	};
 
 /***/ },
-/* 190 */
+/* 191 */
 /***/ function(module, exports) {
 
 	void function(root){
@@ -22707,7 +22743,7 @@
 
 
 /***/ },
-/* 191 */
+/* 192 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -22795,7 +22831,7 @@
 
 
 /***/ },
-/* 192 */
+/* 193 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -22808,7 +22844,7 @@
 	exports.default = LATIN_WORDS;
 
 /***/ },
-/* 193 */
+/* 194 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -22825,7 +22861,7 @@
 	exports.default = STATIC_TEXT;
 
 /***/ },
-/* 194 */
+/* 195 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
