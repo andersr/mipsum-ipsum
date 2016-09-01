@@ -1,0 +1,23 @@
+.list-no-bullets {
+	list-style-type: none;
+  padding-left: 0;
+}
+
+// .list {
+// 	  & > li {
+//
+// 	    @include flex-row;
+//
+// 	    padding-top:   $list-item-padding;
+// 	    padding-bottom: $list-item-padding;
+//
+// 	  &:first-child {
+//       padding-top:0;
+//     }
+//
+// 	  &:last-child {
+//       border-bottom: none;
+//       padding-bottom:0;
+//     }
+// 	}
+// }

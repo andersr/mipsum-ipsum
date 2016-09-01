@@ -2,11 +2,13 @@
 @import "config/layout";
 @import "config/fonts";
 @import "config/colors";
-
 @import "base";
 @import "layouts/flex_layout";
 @import "layouts/full_height";
 
+// COMPONENTS
+@import "components/lists";
 @import "components/clipboard_btn";
+
 
 @import "theme";
