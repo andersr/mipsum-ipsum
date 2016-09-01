@@ -410,6 +410,10 @@ body {
   display: flex;
   flex-flow: column; }
 
+.list-no-bullets {
+  list-style-type: none;
+  padding-left: 0; }
+
 .clipboard-btn {
   position: relative; }
 

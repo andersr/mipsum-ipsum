@@ -21720,7 +21720,7 @@
 	var List = function List(props) {
 	  return _react2.default.createElement(
 	    'ul',
-	    null,
+	    { className: props.style },
 	    props.listItems.map(function (item, key) {
 	      return _react2.default.createElement(
 	        'li',
@@ -21735,7 +21735,12 @@
 
 
 	List.propTypes = {
-	  listItems: _react2.default.PropTypes.array.isRequired
+	  listItems: _react2.default.PropTypes.array.isRequired,
+	  style: _react2.default.PropTypes.string
+	};
+
+	List.defaultProps = {
+	  style: 'list-no-bullets'
 	};
 
 /***/ },
