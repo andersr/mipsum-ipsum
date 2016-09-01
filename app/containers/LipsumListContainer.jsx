@@ -3,29 +3,25 @@ import List from '../components/List'
 import Btn from '../components/Btn'
 import ClipboardBtn from '../components/ClipboardBtn'
 import randomWordParagraph from '../../libs/random_word_paragraph'
-import LATIN_WORDS from '../../libs/latin_words'
 
-export default class ListContainer extends React.Component {
-  constructor () {
-    super()
+export default class LipsumListContainer extends React.Component {
+  constructor (props) {
+    super(props)
     this.state = {
       listItems: []
     }
-    this.sourceWords = LATIN_WORDS
+    this.newBlock = data => randomWordParagraph(data)
   }
 
   addTextBlock () {
-    const newBlock = randomWordParagraph(this.sourceWords)
     this.setState({
-      listItems: this.state.listItems.concat([newBlock])
+      listItems: this.state.listItems.concat([this.newBlock(this.props.lipsumData)])
     })
   }
 
   componentDidMount () {
-    const defaultBlock = randomWordParagraph(this.sourceWords)
     this.setState({
-      listItems: this.state.listItems.concat([defaultBlock]),
-      listContent: defaultBlock
+      listItems: this.state.listItems.concat([this.newBlock(this.props.lipsumData)])
     })
   }
 
@@ -40,4 +36,8 @@ export default class ListContainer extends React.Component {
       </div>
     )
   }
+}
+
+LipsumListContainer.propTypes = {
+  lipsumData: React.PropTypes.array.isRequired
 }
