@@ -19,7 +19,7 @@ var config = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Webpack demo',
+      title: 'Morem Ipsum - One-click Lorem Ipsum',
       template: path.join(__dirname, 'app/templates/index.ejs'),
       inject: 'body',
       filename: 'index.html'

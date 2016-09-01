@@ -21573,35 +21573,38 @@
 	    _this.state = {
 	      listItems: []
 	    };
-	    _this.newBlock = function (data) {
-	      return (0, _random_word_paragraph2.default)(data);
-	    };
 	    return _this;
 	  }
 
 	  _createClass(LipsumListContainer, [{
+	    key: 'newLipsumBlock',
+	    value: function newLipsumBlock(data) {
+	      return (0, _random_word_paragraph2.default)(data);
+	    }
+	  }, {
 	    key: 'addTextBlock',
 	    value: function addTextBlock() {
 	      this.setState({
-	        listItems: this.state.listItems.concat([this.newBlock(this.props.lipsumData)])
+	        listItems: this.state.listItems.concat([this.newLipsumBlock(this.props.lipsumData)])
 	      });
 	    }
 	  }, {
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      this.setState({
-	        listItems: this.state.listItems.concat([this.newBlock(this.props.lipsumData)])
+	        listItems: this.state.listItems.concat([this.newLipsumBlock(this.props.lipsumData)])
 	      });
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var mergedTextBlocks = this.state.listItems.join(' \n\n');
+	      var newParagraph = ' \n\n';
+	      var textBlocks = this.state.listItems.join(newParagraph);
 
 	      return _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement(_ClipboardBtn2.default, { clipboardText: mergedTextBlocks }),
+	        _react2.default.createElement(_ClipboardBtn2.default, { clipboardText: textBlocks }),
 	        _react2.default.createElement(_List2.default, { listItems: this.state.listItems }),
 	        _react2.default.createElement(_Btn2.default, { label: "Add block", handleClick: this.addTextBlock.bind(this) })
 	      );

@@ -1,8 +1,17 @@
 body {
 	background-color: $color-gray-8;
 	color: $primary-text-color;
+	font-family: $base-font-family;
+	font-size: $base-font-size;
+	line-height: $base-line-height;
 }
 #app-container {
 	background-color:white;
 	color: $primary-text-color;
+}
+
+h1 {
+	// font-family: $brand-font;
+	// font-weight: 300;
+	font-size: 1.3em;
 }

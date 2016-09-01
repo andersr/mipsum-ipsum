@@ -1,10 +1,10 @@
 import React from 'react'
 
-const TextBlock = props =>
+const Paragraph = props =>
   <p id={props.id}>{props.text}</p>
 
-export default TextBlock
+export default Paragraph
 
-TextBlock.propTypes = {
+Paragraph.propTypes = {
   text: React.PropTypes.string.isRequired
 }
