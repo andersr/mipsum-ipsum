@@ -1,8 +1,7 @@
 import React from 'react'
 import Clipboard from 'clipboard'
 import classnames from 'classnames'
-// import Octicon from 'react-octicon'
-// <Octicon mega name="clippy"/>
+import Octicon from 'react-octicon'
 
 export default class ClipboardBtn extends React.Component {
   constructor (props) {

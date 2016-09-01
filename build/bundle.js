@@ -45,7 +45,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(1);
-	module.exports = __webpack_require__(197);
+	module.exports = __webpack_require__(209);
 
 
 /***/ },
@@ -189,25 +189,40 @@
 	var cachedSetTimeout;
 	var cachedClearTimeout;
 
+	function defaultSetTimout() {
+	    throw new Error('setTimeout has not been defined');
+	}
+	function defaultClearTimeout () {
+	    throw new Error('clearTimeout has not been defined');
+	}
 	(function () {
 	    try {
-	        cachedSetTimeout = setTimeout;
-	    } catch (e) {
-	        cachedSetTimeout = function () {
-	            throw new Error('setTimeout is not defined');
+	        if (typeof setTimeout === 'function') {
+	            cachedSetTimeout = setTimeout;
+	        } else {
+	            cachedSetTimeout = defaultSetTimout;
 	        }
+	    } catch (e) {
+	        cachedSetTimeout = defaultSetTimout;
 	    }
 	    try {
-	        cachedClearTimeout = clearTimeout;
-	    } catch (e) {
-	        cachedClearTimeout = function () {
-	            throw new Error('clearTimeout is not defined');
+	        if (typeof clearTimeout === 'function') {
+	            cachedClearTimeout = clearTimeout;
+	        } else {
+	            cachedClearTimeout = defaultClearTimeout;
 	        }
+	    } catch (e) {
+	        cachedClearTimeout = defaultClearTimeout;
 	    }
 	} ())
 	function runTimeout(fun) {
 	    if (cachedSetTimeout === setTimeout) {
 	        //normal enviroments in sane situations
+	        return setTimeout(fun, 0);
+	    }
+	    // if setTimeout wasn't available but was latter defined
+	    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+	        cachedSetTimeout = setTimeout;
 	        return setTimeout(fun, 0);
 	    }
 	    try {
@@ -228,6 +243,11 @@
 	function runClearTimeout(marker) {
 	    if (cachedClearTimeout === clearTimeout) {
 	        //normal enviroments in sane situations
+	        return clearTimeout(marker);
+	    }
+	    // if clearTimeout wasn't available but was latter defined
+	    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+	        cachedClearTimeout = clearTimeout;
 	        return clearTimeout(marker);
 	    }
 	    try {
@@ -21449,11 +21469,11 @@
 
 	var _LipsumListContainer2 = _interopRequireDefault(_LipsumListContainer);
 
-	var _static_text = __webpack_require__(195);
+	var _static_text = __webpack_require__(207);
 
 	var _static_text2 = _interopRequireDefault(_static_text);
 
-	var _latin_words = __webpack_require__(196);
+	var _latin_words = __webpack_require__(208);
 
 	var _latin_words2 = _interopRequireDefault(_latin_words);
 
@@ -21464,6 +21484,8 @@
 	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	// import Octicon from 'react-octicon'
 
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
@@ -21630,7 +21652,7 @@
 
 	var _ClipboardBtn2 = _interopRequireDefault(_ClipboardBtn);
 
-	var _random_word_paragraph = __webpack_require__(191);
+	var _random_word_paragraph = __webpack_require__(203);
 
 	var _random_word_paragraph2 = _interopRequireDefault(_random_word_paragraph);
 
@@ -21803,6 +21825,10 @@
 
 	var _classnames2 = _interopRequireDefault(_classnames);
 
+	var _reactOcticon = __webpack_require__(191);
+
+	var _reactOcticon2 = _interopRequireDefault(_reactOcticon);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21854,6 +21880,8 @@
 	      return _react2.default.createElement(
 	        'button',
 	        { className: btnClasses, 'data-clipboard-text': this.props.clipboardText, onClick: this.handleClick.bind(this) },
+	        _react2.default.createElement('span', { className: 'icon octicon octicon-clippy' }),
+	        ' ',
 	        this.props.label
 	      );
 	    }
@@ -22702,12 +22730,492 @@
 
 	'use strict';
 
+	__webpack_require__(192);
+
+	module.exports = __webpack_require__(200);
+
+/***/ },
+/* 192 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(193);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(199)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../css-loader/index.js!./octicons.css", function() {
+				var newContent = require("!!./../../../../css-loader/index.js!./octicons.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 193 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(194)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "@font-face {\n  font-family: 'octicons';\n  src: url(" + __webpack_require__(195) + "?#iefix) format('embedded-opentype'),\n       url(" + __webpack_require__(196) + ") format('woff'),\n       url(" + __webpack_require__(197) + ") format('truetype'),\n       url(" + __webpack_require__(198) + "#octicons) format('svg');\n  font-weight: normal;\n  font-style: normal;\n}\n\n/*\n\n.octicon is optimized for 16px.\n.mega-octicon is optimized for 32px but can be used larger.\n\n*/\n.octicon, .mega-octicon {\n  font: normal normal normal 16px/1 octicons;\n  display: inline-block;\n  text-decoration: none;\n  text-rendering: auto;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n  -webkit-user-select: none;\n  -moz-user-select: none;\n  -ms-user-select: none;\n  user-select: none;\n}\n.mega-octicon { font-size: 32px; }\n\n.octicon-alert:before { content: '\\F02D'} /*  */\n.octicon-arrow-down:before { content: '\\F03F'} /*  */\n.octicon-arrow-left:before { content: '\\F040'} /*  */\n.octicon-arrow-right:before { content: '\\F03E'} /*  */\n.octicon-arrow-small-down:before { content: '\\F0A0'} /*  */\n.octicon-arrow-small-left:before { content: '\\F0A1'} /*  */\n.octicon-arrow-small-right:before { content: '\\F071'} /*  */\n.octicon-arrow-small-up:before { content: '\\F09F'} /*  */\n.octicon-arrow-up:before { content: '\\F03D'} /*  */\n.octicon-microscope:before,\n.octicon-beaker:before { content: '\\F0DD'} /*  */\n.octicon-bell:before { content: '\\F0DE'} /*  */\n.octicon-bold:before { content: '\\F0E2'} /*  */\n.octicon-book:before { content: '\\F007'} /*  */\n.octicon-bookmark:before { content: '\\F07B'} /*  */\n.octicon-briefcase:before { content: '\\F0D3'} /*  */\n.octicon-broadcast:before { content: '\\F048'} /*  */\n.octicon-browser:before { content: '\\F0C5'} /*  */\n.octicon-bug:before { content: '\\F091'} /*  */\n.octicon-calendar:before { content: '\\F068'} /*  */\n.octicon-check:before { content: '\\F03A'} /*  */\n.octicon-checklist:before { content: '\\F076'} /*  */\n.octicon-chevron-down:before { content: '\\F0A3'} /*  */\n.octicon-chevron-left:before { content: '\\F0A4'} /*  */\n.octicon-chevron-right:before { content: '\\F078'} /*  */\n.octicon-chevron-up:before { content: '\\F0A2'} /*  */\n.octicon-circle-slash:before { content: '\\F084'} /*  */\n.octicon-circuit-board:before { content: '\\F0D6'} /*  */\n.octicon-clippy:before { content: '\\F035'} /*  */\n.octicon-clock:before { content: '\\F046'} /*  */\n.octicon-cloud-download:before { content: '\\F00B'} /*  */\n.octicon-cloud-upload:before { content: '\\F00C'} /*  */\n.octicon-code:before { content: '\\F05F'} /*  */\n.octicon-comment-add:before,\n.octicon-comment:before { content: '\\F02B'} /*  */\n.octicon-comment-discussion:before { content: '\\F04F'} /*  */\n.octicon-credit-card:before { content: '\\F045'} /*  */\n.octicon-dash:before { content: '\\F0CA'} /*  */\n.octicon-dashboard:before { content: '\\F07D'} /*  */\n.octicon-database:before { content: '\\F096'} /*  */\n.octicon-clone:before,\n.octicon-desktop-download:before { content: '\\F0DC'} /*  */\n.octicon-device-camera:before { content: '\\F056'} /*  */\n.octicon-device-camera-video:before { content: '\\F057'} /*  */\n.octicon-device-desktop:before { content: '\\F27C'} /*  */\n.octicon-device-mobile:before { content: '\\F038'} /*  */\n.octicon-diff:before { content: '\\F04D'} /*  */\n.octicon-diff-added:before { content: '\\F06B'} /*  */\n.octicon-diff-ignored:before { content: '\\F099'} /*  */\n.octicon-diff-modified:before { content: '\\F06D'} /*  */\n.octicon-diff-removed:before { content: '\\F06C'} /*  */\n.octicon-diff-renamed:before { content: '\\F06E'} /*  */\n.octicon-ellipsis:before { content: '\\F09A'} /*  */\n.octicon-eye-unwatch:before,\n.octicon-eye-watch:before,\n.octicon-eye:before { content: '\\F04E'} /*  */\n.octicon-file-binary:before { content: '\\F094'} /*  */\n.octicon-file-code:before { content: '\\F010'} /*  */\n.octicon-file-directory:before { content: '\\F016'} /*  */\n.octicon-file-media:before { content: '\\F012'} /*  */\n.octicon-file-pdf:before { content: '\\F014'} /*  */\n.octicon-file-submodule:before { content: '\\F017'} /*  */\n.octicon-file-symlink-directory:before { content: '\\F0B1'} /*  */\n.octicon-file-symlink-file:before { content: '\\F0B0'} /*  */\n.octicon-file-text:before { content: '\\F011'} /*  */\n.octicon-file-zip:before { content: '\\F013'} /*  */\n.octicon-flame:before { content: '\\F0D2'} /*  */\n.octicon-fold:before { content: '\\F0CC'} /*  */\n.octicon-gear:before { content: '\\F02F'} /*  */\n.octicon-gift:before { content: '\\F042'} /*  */\n.octicon-gist:before { content: '\\F00E'} /*  */\n.octicon-gist-secret:before { content: '\\F08C'} /*  */\n.octicon-git-branch-create:before,\n.octicon-git-branch-delete:before,\n.octicon-git-branch:before { content: '\\F020'} /*  */\n.octicon-git-commit:before { content: '\\F01F'} /*  */\n.octicon-git-compare:before { content: '\\F0AC'} /*  */\n.octicon-git-merge:before { content: '\\F023'} /*  */\n.octicon-git-pull-request-abandoned:before,\n.octicon-git-pull-request:before { content: '\\F009'} /*  */\n.octicon-globe:before { content: '\\F0B6'} /*  */\n.octicon-graph:before { content: '\\F043'} /*  */\n.octicon-heart:before { content: '\\2665'} /* ♥ */\n.octicon-history:before { content: '\\F07E'} /*  */\n.octicon-home:before { content: '\\F08D'} /*  */\n.octicon-horizontal-rule:before { content: '\\F070'} /*  */\n.octicon-hubot:before { content: '\\F09D'} /*  */\n.octicon-inbox:before { content: '\\F0CF'} /*  */\n.octicon-info:before { content: '\\F059'} /*  */\n.octicon-issue-closed:before { content: '\\F028'} /*  */\n.octicon-issue-opened:before { content: '\\F026'} /*  */\n.octicon-issue-reopened:before { content: '\\F027'} /*  */\n.octicon-italic:before { content: '\\F0E4'} /*  */\n.octicon-jersey:before { content: '\\F019'} /*  */\n.octicon-key:before { content: '\\F049'} /*  */\n.octicon-keyboard:before { content: '\\F00D'} /*  */\n.octicon-law:before { content: '\\F0D8'} /*  */\n.octicon-light-bulb:before { content: '\\F000'} /*  */\n.octicon-link:before { content: '\\F05C'} /*  */\n.octicon-link-external:before { content: '\\F07F'} /*  */\n.octicon-list-ordered:before { content: '\\F062'} /*  */\n.octicon-list-unordered:before { content: '\\F061'} /*  */\n.octicon-location:before { content: '\\F060'} /*  */\n.octicon-gist-private:before,\n.octicon-mirror-private:before,\n.octicon-git-fork-private:before,\n.octicon-lock:before { content: '\\F06A'} /*  */\n.octicon-logo-gist:before { content: '\\F0AD'} /*  */\n.octicon-logo-github:before { content: '\\F092'} /*  */\n.octicon-mail:before { content: '\\F03B'} /*  */\n.octicon-mail-read:before { content: '\\F03C'} /*  */\n.octicon-mail-reply:before { content: '\\F051'} /*  */\n.octicon-mark-github:before { content: '\\F00A'} /*  */\n.octicon-markdown:before { content: '\\F0C9'} /*  */\n.octicon-megaphone:before { content: '\\F077'} /*  */\n.octicon-mention:before { content: '\\F0BE'} /*  */\n.octicon-milestone:before { content: '\\F075'} /*  */\n.octicon-mirror-public:before,\n.octicon-mirror:before { content: '\\F024'} /*  */\n.octicon-mortar-board:before { content: '\\F0D7'} /*  */\n.octicon-mute:before { content: '\\F080'} /*  */\n.octicon-no-newline:before { content: '\\F09C'} /*  */\n.octicon-octoface:before { content: '\\F008'} /*  */\n.octicon-organization:before { content: '\\F037'} /*  */\n.octicon-package:before { content: '\\F0C4'} /*  */\n.octicon-paintcan:before { content: '\\F0D1'} /*  */\n.octicon-pencil:before { content: '\\F058'} /*  */\n.octicon-person-add:before,\n.octicon-person-follow:before,\n.octicon-person:before { content: '\\F018'} /*  */\n.octicon-pin:before { content: '\\F041'} /*  */\n.octicon-plug:before { content: '\\F0D4'} /*  */\n.octicon-repo-create:before,\n.octicon-gist-new:before,\n.octicon-file-directory-create:before,\n.octicon-file-add:before,\n.octicon-plus:before { content: '\\F05D'} /*  */\n.octicon-primitive-dot:before { content: '\\F052'} /*  */\n.octicon-primitive-square:before { content: '\\F053'} /*  */\n.octicon-pulse:before { content: '\\F085'} /*  */\n.octicon-question:before { content: '\\F02C'} /*  */\n.octicon-quote:before { content: '\\F063'} /*  */\n.octicon-radio-tower:before { content: '\\F030'} /*  */\n.octicon-repo-delete:before,\n.octicon-repo:before { content: '\\F001'} /*  */\n.octicon-repo-clone:before { content: '\\F04C'} /*  */\n.octicon-repo-force-push:before { content: '\\F04A'} /*  */\n.octicon-gist-fork:before,\n.octicon-repo-forked:before { content: '\\F002'} /*  */\n.octicon-repo-pull:before { content: '\\F006'} /*  */\n.octicon-repo-push:before { content: '\\F005'} /*  */\n.octicon-rocket:before { content: '\\F033'} /*  */\n.octicon-rss:before { content: '\\F034'} /*  */\n.octicon-ruby:before { content: '\\F047'} /*  */\n.octicon-search-save:before,\n.octicon-search:before { content: '\\F02E'} /*  */\n.octicon-server:before { content: '\\F097'} /*  */\n.octicon-settings:before { content: '\\F07C'} /*  */\n.octicon-shield:before { content: '\\F0E1'} /*  */\n.octicon-log-in:before,\n.octicon-sign-in:before { content: '\\F036'} /*  */\n.octicon-log-out:before,\n.octicon-sign-out:before { content: '\\F032'} /*  */\n.octicon-smiley:before { content: '\\F0E7'} /*  */\n.octicon-squirrel:before { content: '\\F0B2'} /*  */\n.octicon-star-add:before,\n.octicon-star-delete:before,\n.octicon-star:before { content: '\\F02A'} /*  */\n.octicon-stop:before { content: '\\F08F'} /*  */\n.octicon-repo-sync:before,\n.octicon-sync:before { content: '\\F087'} /*  */\n.octicon-tag-remove:before,\n.octicon-tag-add:before,\n.octicon-tag:before { content: '\\F015'} /*  */\n.octicon-tasklist:before { content: '\\F0E5'} /*  */\n.octicon-telescope:before { content: '\\F088'} /*  */\n.octicon-terminal:before { content: '\\F0C8'} /*  */\n.octicon-text-size:before { content: '\\F0E3'} /*  */\n.octicon-three-bars:before { content: '\\F05E'} /*  */\n.octicon-thumbsdown:before { content: '\\F0DB'} /*  */\n.octicon-thumbsup:before { content: '\\F0DA'} /*  */\n.octicon-tools:before { content: '\\F031'} /*  */\n.octicon-trashcan:before { content: '\\F0D0'} /*  */\n.octicon-triangle-down:before { content: '\\F05B'} /*  */\n.octicon-triangle-left:before { content: '\\F044'} /*  */\n.octicon-triangle-right:before { content: '\\F05A'} /*  */\n.octicon-triangle-up:before { content: '\\F0AA'} /*  */\n.octicon-unfold:before { content: '\\F039'} /*  */\n.octicon-unmute:before { content: '\\F0BA'} /*  */\n.octicon-unverified:before { content: '\\F0E8'} /*  */\n.octicon-verified:before { content: '\\F0E6'} /*  */\n.octicon-versions:before { content: '\\F064'} /*  */\n.octicon-watch:before { content: '\\F0E0'} /*  */\n.octicon-remove-close:before,\n.octicon-x:before { content: '\\F081'} /*  */\n.octicon-zap:before { content: '\\26A1'} /* ⚡ */\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 194 */
+/***/ function(module, exports) {
+
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/
+	// css base code, injected by the css-loader
+	module.exports = function() {
+		var list = [];
+
+		// return the list of modules as css string
+		list.toString = function toString() {
+			var result = [];
+			for(var i = 0; i < this.length; i++) {
+				var item = this[i];
+				if(item[2]) {
+					result.push("@media " + item[2] + "{" + item[1] + "}");
+				} else {
+					result.push(item[1]);
+				}
+			}
+			return result.join("");
+		};
+
+		// import a list of modules into the list
+		list.i = function(modules, mediaQuery) {
+			if(typeof modules === "string")
+				modules = [[null, modules, ""]];
+			var alreadyImportedModules = {};
+			for(var i = 0; i < this.length; i++) {
+				var id = this[i][0];
+				if(typeof id === "number")
+					alreadyImportedModules[id] = true;
+			}
+			for(i = 0; i < modules.length; i++) {
+				var item = modules[i];
+				// skip already imported module
+				// this implementation is not 100% perfect for weird media query combinations
+				//  when a module is imported multiple times with different media queries.
+				//  I hope this will never occur (Hey this way we have smaller bundles)
+				if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+					if(mediaQuery && !item[2]) {
+						item[2] = mediaQuery;
+					} else if(mediaQuery) {
+						item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+					}
+					list.push(item);
+				}
+			}
+		};
+		return list;
+	};
+
+
+/***/ },
+/* 195 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "7b3fd4b10ef8298c7df5c5acad4b7e42.eot";
+
+/***/ },
+/* 196 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "260ef443edb4dfd026d82e2b21a4c75c.woff";
+
+/***/ },
+/* 197 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "ed294b221e32c83d9e79195d599313d3.ttf";
+
+/***/ },
+/* 198 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__.p + "9e5cc6ea569143be7be53e6f6c7bcebf.svg";
+
+/***/ },
+/* 199 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/
+	var stylesInDom = {},
+		memoize = function(fn) {
+			var memo;
+			return function () {
+				if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+				return memo;
+			};
+		},
+		isOldIE = memoize(function() {
+			return /msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase());
+		}),
+		getHeadElement = memoize(function () {
+			return document.head || document.getElementsByTagName("head")[0];
+		}),
+		singletonElement = null,
+		singletonCounter = 0,
+		styleElementsInsertedAtTop = [];
+
+	module.exports = function(list, options) {
+		if(false) {
+			if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+		}
+
+		options = options || {};
+		// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+		// tags it will allow on a page
+		if (typeof options.singleton === "undefined") options.singleton = isOldIE();
+
+		// By default, add <style> tags to the bottom of <head>.
+		if (typeof options.insertAt === "undefined") options.insertAt = "bottom";
+
+		var styles = listToStyles(list);
+		addStylesToDom(styles, options);
+
+		return function update(newList) {
+			var mayRemove = [];
+			for(var i = 0; i < styles.length; i++) {
+				var item = styles[i];
+				var domStyle = stylesInDom[item.id];
+				domStyle.refs--;
+				mayRemove.push(domStyle);
+			}
+			if(newList) {
+				var newStyles = listToStyles(newList);
+				addStylesToDom(newStyles, options);
+			}
+			for(var i = 0; i < mayRemove.length; i++) {
+				var domStyle = mayRemove[i];
+				if(domStyle.refs === 0) {
+					for(var j = 0; j < domStyle.parts.length; j++)
+						domStyle.parts[j]();
+					delete stylesInDom[domStyle.id];
+				}
+			}
+		};
+	}
+
+	function addStylesToDom(styles, options) {
+		for(var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+			if(domStyle) {
+				domStyle.refs++;
+				for(var j = 0; j < domStyle.parts.length; j++) {
+					domStyle.parts[j](item.parts[j]);
+				}
+				for(; j < item.parts.length; j++) {
+					domStyle.parts.push(addStyle(item.parts[j], options));
+				}
+			} else {
+				var parts = [];
+				for(var j = 0; j < item.parts.length; j++) {
+					parts.push(addStyle(item.parts[j], options));
+				}
+				stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+			}
+		}
+	}
+
+	function listToStyles(list) {
+		var styles = [];
+		var newStyles = {};
+		for(var i = 0; i < list.length; i++) {
+			var item = list[i];
+			var id = item[0];
+			var css = item[1];
+			var media = item[2];
+			var sourceMap = item[3];
+			var part = {css: css, media: media, sourceMap: sourceMap};
+			if(!newStyles[id])
+				styles.push(newStyles[id] = {id: id, parts: [part]});
+			else
+				newStyles[id].parts.push(part);
+		}
+		return styles;
+	}
+
+	function insertStyleElement(options, styleElement) {
+		var head = getHeadElement();
+		var lastStyleElementInsertedAtTop = styleElementsInsertedAtTop[styleElementsInsertedAtTop.length - 1];
+		if (options.insertAt === "top") {
+			if(!lastStyleElementInsertedAtTop) {
+				head.insertBefore(styleElement, head.firstChild);
+			} else if(lastStyleElementInsertedAtTop.nextSibling) {
+				head.insertBefore(styleElement, lastStyleElementInsertedAtTop.nextSibling);
+			} else {
+				head.appendChild(styleElement);
+			}
+			styleElementsInsertedAtTop.push(styleElement);
+		} else if (options.insertAt === "bottom") {
+			head.appendChild(styleElement);
+		} else {
+			throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
+		}
+	}
+
+	function removeStyleElement(styleElement) {
+		styleElement.parentNode.removeChild(styleElement);
+		var idx = styleElementsInsertedAtTop.indexOf(styleElement);
+		if(idx >= 0) {
+			styleElementsInsertedAtTop.splice(idx, 1);
+		}
+	}
+
+	function createStyleElement(options) {
+		var styleElement = document.createElement("style");
+		styleElement.type = "text/css";
+		insertStyleElement(options, styleElement);
+		return styleElement;
+	}
+
+	function createLinkElement(options) {
+		var linkElement = document.createElement("link");
+		linkElement.rel = "stylesheet";
+		insertStyleElement(options, linkElement);
+		return linkElement;
+	}
+
+	function addStyle(obj, options) {
+		var styleElement, update, remove;
+
+		if (options.singleton) {
+			var styleIndex = singletonCounter++;
+			styleElement = singletonElement || (singletonElement = createStyleElement(options));
+			update = applyToSingletonTag.bind(null, styleElement, styleIndex, false);
+			remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true);
+		} else if(obj.sourceMap &&
+			typeof URL === "function" &&
+			typeof URL.createObjectURL === "function" &&
+			typeof URL.revokeObjectURL === "function" &&
+			typeof Blob === "function" &&
+			typeof btoa === "function") {
+			styleElement = createLinkElement(options);
+			update = updateLink.bind(null, styleElement);
+			remove = function() {
+				removeStyleElement(styleElement);
+				if(styleElement.href)
+					URL.revokeObjectURL(styleElement.href);
+			};
+		} else {
+			styleElement = createStyleElement(options);
+			update = applyToTag.bind(null, styleElement);
+			remove = function() {
+				removeStyleElement(styleElement);
+			};
+		}
+
+		update(obj);
+
+		return function updateStyle(newObj) {
+			if(newObj) {
+				if(newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap)
+					return;
+				update(obj = newObj);
+			} else {
+				remove();
+			}
+		};
+	}
+
+	var replaceText = (function () {
+		var textStore = [];
+
+		return function (index, replacement) {
+			textStore[index] = replacement;
+			return textStore.filter(Boolean).join('\n');
+		};
+	})();
+
+	function applyToSingletonTag(styleElement, index, remove, obj) {
+		var css = remove ? "" : obj.css;
+
+		if (styleElement.styleSheet) {
+			styleElement.styleSheet.cssText = replaceText(index, css);
+		} else {
+			var cssNode = document.createTextNode(css);
+			var childNodes = styleElement.childNodes;
+			if (childNodes[index]) styleElement.removeChild(childNodes[index]);
+			if (childNodes.length) {
+				styleElement.insertBefore(cssNode, childNodes[index]);
+			} else {
+				styleElement.appendChild(cssNode);
+			}
+		}
+	}
+
+	function applyToTag(styleElement, obj) {
+		var css = obj.css;
+		var media = obj.media;
+
+		if(media) {
+			styleElement.setAttribute("media", media)
+		}
+
+		if(styleElement.styleSheet) {
+			styleElement.styleSheet.cssText = css;
+		} else {
+			while(styleElement.firstChild) {
+				styleElement.removeChild(styleElement.firstChild);
+			}
+			styleElement.appendChild(document.createTextNode(css));
+		}
+	}
+
+	function updateLink(linkElement, obj) {
+		var css = obj.css;
+		var sourceMap = obj.sourceMap;
+
+		if(sourceMap) {
+			// http://stackoverflow.com/a/26603875
+			css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+		}
+
+		var blob = new Blob([css], { type: "text/css" });
+
+		var oldSrc = linkElement.href;
+
+		linkElement.href = URL.createObjectURL(blob);
+
+		if(oldSrc)
+			URL.revokeObjectURL(oldSrc);
+	}
+
+
+/***/ },
+/* 200 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	exports.__esModule = true;
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	__webpack_require__(201);
+
+	var Octicon = _react2['default'].createClass({
+	  displayName: 'Octicon',
+
+	  propTypes: {
+	    name: _react.PropTypes.string.isRequired,
+	    className: _react.PropTypes.string,
+	    mega: _react.PropTypes.bool,
+	    spin: _react.PropTypes.bool
+	  },
+	  getDefaultProps: function getDefaultProps() {
+	    return {
+	      mega: false,
+	      spin: false
+	    };
+	  },
+	  render: function render() {
+	    var _props = this.props;
+	    var name = _props.name;
+	    var className = _props.className;
+	    var mega = _props.mega;
+	    var spin = _props.spin;
+
+	    var props = _objectWithoutProperties(_props, ['name', 'className', 'mega', 'spin']);
+
+	    var classNames = [mega ? 'mega-octicon' : 'octicon', 'octicon-' + name];
+	    if (spin) {
+	      classNames.push('spin-octicon');
+	    }
+	    if (className) {
+	      classNames.push(className);
+	    }
+	    return _react2['default'].createElement('span', _extends({}, props, { className: classNames.join(' ') }));
+	  }
+	});
+
+	exports['default'] = Octicon;
+	module.exports = exports['default'];
+
+/***/ },
+/* 201 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(202);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(199)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../css-loader/index.js!./Octicon.css", function() {
+				var newContent = require("!!./../../css-loader/index.js!./Octicon.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 202 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(194)();
+	// imports
+
+
+	// module
+	exports.push([module.id, ".spin-octicon {\n  animation: spin-octicon 2s infinite linear;\n}\n@keyframes spin-octicon {\n  0% {\n    transform: rotate(0deg);\n  }\n  100% {\n    transform: rotate(359deg);\n  }\n}\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 203 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
 	exports.default = randomWordParagraph;
 
-	var _utils = __webpack_require__(192);
+	var _utils = __webpack_require__(204);
 
 	function randomWordParagraph(srcWords) {
 	  var totalWords = (0, _utils.randomNumberBetween)(20, 25);
@@ -22739,7 +23247,7 @@
 	}
 
 /***/ },
-/* 192 */
+/* 204 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22749,11 +23257,11 @@
 	});
 	exports.capitalize = exports.shuffleItems = exports.randomNumberBetween = undefined;
 
-	var _randomNumber = __webpack_require__(193);
+	var _randomNumber = __webpack_require__(205);
 
 	var _randomNumber2 = _interopRequireDefault(_randomNumber);
 
-	var _shuffleArray = __webpack_require__(194);
+	var _shuffleArray = __webpack_require__(206);
 
 	var _shuffleArray2 = _interopRequireDefault(_shuffleArray);
 
@@ -22776,7 +23284,7 @@
 	};
 
 /***/ },
-/* 193 */
+/* 205 */
 /***/ function(module, exports) {
 
 	void function(root){
@@ -22826,7 +23334,7 @@
 
 
 /***/ },
-/* 194 */
+/* 206 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -22914,7 +23422,7 @@
 
 
 /***/ },
-/* 195 */
+/* 207 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -22932,7 +23440,7 @@
 	exports.default = STATIC_TEXT;
 
 /***/ },
-/* 196 */
+/* 208 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -22945,7 +23453,7 @@
 	exports.default = LATIN_WORDS;
 
 /***/ },
-/* 197 */
+/* 209 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
