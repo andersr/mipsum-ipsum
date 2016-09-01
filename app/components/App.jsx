@@ -13,7 +13,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div id='app-container'>
-        <TextHeading text={STATIC_TEXT.appInfo.title} />
+        <AppHeader title={STATIC_TEXT.appInfo.title} tagline={STATIC_TEXT.appInfo.tagline} />
         <LipsumListContainer lipsumData={LATIN_WORDS} />
       </div>
     )

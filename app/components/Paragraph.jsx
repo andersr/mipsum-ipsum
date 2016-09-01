@@ -1,10 +1,11 @@
 import React from 'react'
 
 const Paragraph = props =>
-  <p id={props.id}>{props.text}</p>
+  <p className={props.style}>{props.text}</p>
 
 export default Paragraph
 
 Paragraph.propTypes = {
-  text: React.PropTypes.string.isRequired
+  text: React.PropTypes.string.isRequired,
+  style: React.PropTypes.string
 }
