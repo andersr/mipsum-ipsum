@@ -1,6 +1,7 @@
 const webpack = require('webpack')
 const merge = require('webpack-merge')
 const CONFIG = require('./config/webpack')
+const APP_INFO = require('./config/app_info')
 const webpack_parts = require('./config/webpack_parts')
 const validate = require('webpack-validator')
 
@@ -25,9 +26,10 @@ const devConfig = {
 
 const config = merge(
   devConfig,
-  webpack_parts.indexTemplate,
+  webpack_parts.indexTemplate({title: APP_INFO.windowTitle, template: CONFIG.indexTemplate}),
   webpack_parts.loadJSX([CONFIG.app, CONFIG.libs]),
-  webpack_parts.loadFonts([CONFIG.icons]), webpack_parts.loadCSS([CONFIG.icons]),
+  webpack_parts.loadFonts([CONFIG.icons]),
+  webpack_parts.loadCSS([CONFIG.icons]),
   webpack_parts.loadSCSS([CONFIG.styles])
 )
 
