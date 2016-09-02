@@ -1,14 +1,15 @@
 const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CONFIG = require('./webpack')
-const APP_INFO = require('./app_info')
 
-exports.indexTemplate = function () {
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+
+exports.indexTemplate = function (options) {
   return {
     plugins: [
       new HtmlWebpackPlugin({
-        title: APP_INFO.windowTitle,
-        template: CONFIG.indexTemplate,
+        title: options.title,
+        template: options.template,
         inject: 'body',
         filename: 'index.html'
       })
@@ -51,6 +52,23 @@ exports.loadSCSS = function (paths) {
         {
           test: /\.scss$/,
           loaders: ['style', 'css', 'sass'],
+          include: paths
+        }
+      ]
+    }
+  }
+}
+
+exports.extractSCSS = function (paths) {
+  return {
+    plugins: [
+      new ExtractTextPlugin('[name].css')
+    ],
+    module: {
+      loaders: [
+        {
+          test: /\.scss$/,
+          loader: ExtractTextPlugin.extract('style', 'css!sass'),
           include: paths
         }
       ]

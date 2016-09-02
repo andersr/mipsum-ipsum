@@ -1,62 +1,39 @@
-// const merge = require('webpack-merge')
+const merge = require('webpack-merge')
 const validate = require('webpack-validator')
+
 const CONFIG = require('./config/webpack')
 const APP_INFO = require('./config/app_info')
 const webpack_parts = require('./config/webpack_parts')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
+
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 
-const config = {
+const prodConfig = {
   context: CONFIG.app,
   entry: [
     './index.js', './styles/main.scss'],
   output: {
-    path: CONFIG.app,
+    path: CONFIG.build,
     filename: 'bundle.js',
     publicPath: '/'
   },
   plugins: [
     new CleanWebpackPlugin(CONFIG.build, {
-        root: process.cwd()
-      }),
-    new ExtractTextPlugin('[name].css'),
-    new HtmlWebpackPlugin({
-      title: APP_INFO.windowTitle,
-      template: CONFIG.indexTemplate,
-      inject: 'body',
-      filename: 'index.html'
+      root: process.cwd()
     })
   ],
-  module: {
-    loaders: [{
-      test: /\.jsx?$/,
-      loaders: ['babel'],
-      include: [CONFIG.app, CONFIG.libs]
-    },
-    {
-      test: /\.scss$/,
-      loader: ExtractTextPlugin.extract('style', 'css!sass'),
-      include: CONFIG.styles
-    },
-    {
-      test: /\.css$/,
-      loader: 'style!css'
-    },
-    {
-      test: /\.(otf|eot|svg|ttf|woff|woff2).*$/,
-      loader: 'url?limit=8192'
-    }]
-  },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: CONFIG.extensions
   }
 }
 
-// const config = merge(
-//   prodConfig,
-//   webpack_parts.indexTemplate
-// )
+const config = merge(
+  prodConfig,
+  webpack_parts.indexTemplate({title: APP_INFO.windowTitle, template: CONFIG.indexTemplate}),
+  webpack_parts.loadJSX([CONFIG.app, CONFIG.libs]),
+  webpack_parts.loadFonts([CONFIG.icons]),
+  webpack_parts.loadCSS([CONFIG.icons]),
+  webpack_parts.extractSCSS([CONFIG.styles])
+)
 
 module.exports = validate(config, {
   quiet: true
