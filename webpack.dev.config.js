@@ -1,16 +1,15 @@
 const webpack = require('webpack')
 const merge = require('webpack-merge')
-const PATHS = require('./config/paths')
-const APP_INFO = require('./config/app_info')
+const CONFIG = require('./config/webpack')
 const webpack_parts = require('./config/webpack_parts')
 const validate = require('webpack-validator')
 
 const devConfig = {
-  context: PATHS.app,
+  context: CONFIG.app,
   entry: ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
     './index.js', './styles/main.scss'],
   output: {
-    path: PATHS.build,
+    path: CONFIG.build,
     filename: '[name].js',
     publicPath: '/'
   },
@@ -19,36 +18,17 @@ const devConfig = {
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   ],
-  module: {
-    loaders: [
-      {
-        test: /\.jsx?$/,
-        loaders: ['react-hot', 'babel'],
-        include: [PATHS.app, PATHS.libs]
-      },
-      {
-        test: /\.scss$/,
-        loaders: ['style', 'css', 'sass'],
-        include: [ PATHS.styles ]
-      },
-      {
-        test: /\.css$/,
-        loader: 'style!css'
-      },
-      {
-        test: /\.(otf|eot|svg|ttf|woff|woff2).*$/,
-        loader: 'url?limit=8192'
-      }
-    ]
-  },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: CONFIG.extensions
   }
 }
 
 const config = merge(
   devConfig,
-  webpack_parts.indexTemplate
+  webpack_parts.indexTemplate,
+  webpack_parts.loadJSX([CONFIG.app, CONFIG.libs]),
+  webpack_parts.loadFonts([CONFIG.icons]), webpack_parts.loadCSS([CONFIG.icons]),
+  webpack_parts.loadSCSS([CONFIG.styles])
 )
 
 module.exports = validate(config, {

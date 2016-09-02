@@ -1,4 +1,3 @@
 module.exports = {
-  name: 'Morem Ipsum',
-  tagLine: 'One-click Lorem Ipsum'
+  windowTitle: 'Morem Ipsum - One-click Lorem Ipsum'
 }

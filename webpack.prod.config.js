@@ -1,35 +1,22 @@
-const path = require('path')
-// const merge = require('webpack-merge')
+const merge = require('webpack-merge')
 const validate = require('webpack-validator')
-// const parts = require('./libs/parts')
+const CONFIG = require('./config/webpack')
+const APP_INFO = require('./config/app_info')
+const webpack_parts = require('./config/webpack_parts')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
-
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 
-const PATHS = {
-  app: path.join(__dirname, 'app'),
-  style: path.join(__dirname, 'app/styles/main.scss')
-}
-
-const config = {
-  context: path.join(__dirname, 'app'),
+const prodConfig = {
+  context: CONFIG.app,
   entry: [
     './index.js', './styles/main.scss'],
   output: {
-    path: path.join(__dirname, 'build'),
+    path: CONFIG.app,
     filename: 'bundle.js',
     publicPath: '/'
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      title: 'Morem Ipsum - One-click Lorem Ipsum',
-      template: path.join(__dirname, 'app/templates/index.ejs'),
-      inject: 'body',
-      filename: 'index.html'
-    }),
-    new CleanWebpackPlugin(path.join(__dirname, 'build'), {
+    new CleanWebpackPlugin(CONFIG.build, {
         root: process.cwd()
       }),
     new ExtractTextPlugin('[name].css')
@@ -38,12 +25,12 @@ const config = {
     loaders: [{
       test: /\.jsx?$/,
       loaders: ['babel'],
-      include: [path.join(__dirname, 'app'), path.join(__dirname, 'libs')]
+      include: [CONFIG.app, CONFIG.libs]
     },
     {
       test: /\.scss$/,
       loader: ExtractTextPlugin.extract('style', 'css!sass'),
-      include: PATHS.style
+      include: CONFIG.styles
     },
     {
       test: /\.css$/,
@@ -58,6 +45,12 @@ const config = {
     extensions: ['', '.js', '.jsx']
   }
 }
+
+const config = merge(
+  prodConfig,
+  webpack_parts.indexTemplate
+)
+
 module.exports = validate(config, {
   quiet: true
 })
