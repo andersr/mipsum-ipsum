@@ -1,27 +1,24 @@
-var path = require('path')
-var webpack = require('webpack')
+// const path = require('path')
+const webpack = require('webpack')
+const PATHS = require('./config/paths')
 const validate = require('webpack-validator')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-const PATHS = {
-  style: path.join(__dirname, 'app/styles/main.scss'),
-  icons: path.join(__dirname, 'node_modules/octicons/index.scss')
-}
+// console.log("PATHS: ", PATHS)
 
 var config = {
-  context: path.join(__dirname, 'app'),
+  context: PATHS.app,
   entry: ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
-    './index.js', './styles/main.scss']
-  ,
+    './index.js', './styles/main.scss'],
   output: {
-    path: path.join(__dirname, 'build'),
+    path: PATHS.build,
     filename: '[name].js',
     publicPath: '/'
   },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Morem Ipsum - One-click Lorem Ipsum',
-      template: path.join(__dirname, 'app/templates/index.ejs'),
+      template: PATHS.indexTemplate,
       inject: 'body',
       filename: 'index.html'
     }),
@@ -34,12 +31,12 @@ var config = {
       {
         test: /\.jsx?$/,
         loaders: ['react-hot', 'babel'],
-        include: [path.join(__dirname, 'app'), path.join(__dirname, 'libs')]
+        include: [PATHS.app, PATHS.libs]
       },
       {
         test: /\.scss$/,
         loaders: ['style', 'css', 'sass'],
-        include: [ PATHS.style, PATHS.icons ]
+        include: [ PATHS.styles ]
       },
       {
         test: /\.css$/,
