@@ -1,3 +1,4 @@
+const webpack = require('webpack')
 const merge = require('webpack-merge')
 const validate = require('webpack-validator')
 
@@ -8,17 +9,24 @@ const webpack_parts = require('./config/webpack_parts')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 const prodConfig = {
-  context: CONFIG.app,
-  entry: [
-    './index.js', './styles/main.scss'],
+  entry: {
+    app: CONFIG.app,
+    styles: CONFIG.styles,
+    vendor: CONFIG.vendor
+  },
   output: {
     path: CONFIG.build,
-    filename: 'bundle.js',
+    filename: '[name].js',
     publicPath: '/'
   },
   plugins: [
     new CleanWebpackPlugin(CONFIG.build, {
       root: process.cwd()
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
     })
   ],
   resolve: {
@@ -28,13 +36,20 @@ const prodConfig = {
 
 const config = merge(
   prodConfig,
+  {
+    devtool: 'cheap-module-source-map'
+  },
   webpack_parts.indexTemplate({title: APP_INFO.windowTitle, template: CONFIG.indexTemplate}),
   webpack_parts.loadJSX([CONFIG.app, CONFIG.libs]),
   webpack_parts.loadFonts([CONFIG.icons]),
   webpack_parts.loadCSS([CONFIG.icons]),
-  webpack_parts.extractSCSS([CONFIG.styles])
+  webpack_parts.extractSCSS([CONFIG.styles]),
+  webpack_parts.minify()
 )
 
 module.exports = validate(config, {
   quiet: true
 })
+
+// [
+//   './index.js', './styles/main.scss']
