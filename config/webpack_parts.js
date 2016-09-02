@@ -90,6 +90,13 @@ exports.loadFonts = function (paths) {
   }
 }
 
+// exports.copyFiles = function ({ from: 'source', to: 'dest' }) {
+//   return {
+//     plugins: [
+//       new CopyWebpackPlugin({ from: 'source', to: 'dest' }, options)
+//     ]
+//   }
+// }
 
 exports.minify = function () {
   return {
