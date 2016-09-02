@@ -3,15 +3,17 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CONFIG = require('./webpack')
 const APP_INFO = require('./app_info')
 
-exports.indexTemplate = {
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: APP_INFO.windowTitle,
-      template: CONFIG.indexTemplate,
-      inject: 'body',
-      filename: 'index.html'
-    })
-  ]
+exports.indexTemplate = function () {
+  return {
+    plugins: [
+      new HtmlWebpackPlugin({
+        title: APP_INFO.windowTitle,
+        template: CONFIG.indexTemplate,
+        inject: 'body',
+        filename: 'index.html'
+      })
+    ]
+  }
 }
 
 exports.loadJSX = function (paths) {

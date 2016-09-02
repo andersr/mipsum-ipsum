@@ -1,12 +1,13 @@
-const merge = require('webpack-merge')
+// const merge = require('webpack-merge')
 const validate = require('webpack-validator')
 const CONFIG = require('./config/webpack')
 const APP_INFO = require('./config/app_info')
 const webpack_parts = require('./config/webpack_parts')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const CleanWebpackPlugin = require('clean-webpack-plugin')
 
-const prodConfig = {
+const config = {
   context: CONFIG.app,
   entry: [
     './index.js', './styles/main.scss'],
@@ -19,7 +20,13 @@ const prodConfig = {
     new CleanWebpackPlugin(CONFIG.build, {
         root: process.cwd()
       }),
-    new ExtractTextPlugin('[name].css')
+    new ExtractTextPlugin('[name].css'),
+    new HtmlWebpackPlugin({
+      title: APP_INFO.windowTitle,
+      template: CONFIG.indexTemplate,
+      inject: 'body',
+      filename: 'index.html'
+    })
   ],
   module: {
     loaders: [{
@@ -46,10 +53,10 @@ const prodConfig = {
   }
 }
 
-const config = merge(
-  prodConfig,
-  webpack_parts.indexTemplate
-)
+// const config = merge(
+//   prodConfig,
+//   webpack_parts.indexTemplate
+// )
 
 module.exports = validate(config, {
   quiet: true
