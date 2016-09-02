@@ -1,10 +1,11 @@
 const webpack = require('webpack')
+const merge = require('webpack-merge')
 const PATHS = require('./config/paths')
 const APP_INFO = require('./config/app_info')
+const webpack_parts = require('./config/webpack_parts')
 const validate = require('webpack-validator')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
 
-var config = {
+const devConfig = {
   context: PATHS.app,
   entry: ['webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
     './index.js', './styles/main.scss'],
@@ -14,12 +15,6 @@ var config = {
     publicPath: '/'
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      title: APP_INFO.windowTitle,
-      template: PATHS.indexTemplate,
-      inject: 'body',
-      filename: 'index.html'
-    }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
@@ -50,6 +45,12 @@ var config = {
     extensions: ['', '.js', '.jsx']
   }
 }
+
+const config = merge(
+  devConfig,
+  webpack_parts.indexTemplate
+)
+
 module.exports = validate(config, {
   quiet: true
 })
