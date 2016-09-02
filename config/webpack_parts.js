@@ -3,6 +3,7 @@ const CONFIG = require('./webpack')
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const PurifyCSSPlugin = require('purifycss-webpack-plugin')
 
 exports.indexTemplate = function (options) {
   return {
@@ -73,6 +74,20 @@ exports.extractSCSS = function (paths) {
         }
       ]
     }
+  }
+}
+
+exports.purifyCSS = function(paths) {
+  return {
+    plugins: [
+      new PurifyCSSPlugin({
+        basePath: process.cwd(),
+        // `paths` is used to point PurifyCSS to files not
+        // visible to Webpack. You can pass glob patterns
+        // to it.
+        paths: paths
+      }),
+    ]
   }
 }
 

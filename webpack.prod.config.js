@@ -46,6 +46,7 @@ const config = merge(
   webpack_parts.loadFonts([CONFIG.icons]),
   webpack_parts.loadCSS([CONFIG.icons]),
   webpack_parts.extractSCSS([CONFIG.styles]),
+  webpack_parts.purifyCSS([CONFIG.app]),
   // webpack_parts.favicons(CONFIG.favicon),
   webpack_parts.minify()
 )
