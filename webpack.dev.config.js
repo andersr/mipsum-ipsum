@@ -1,10 +1,8 @@
-// const path = require('path')
 const webpack = require('webpack')
 const PATHS = require('./config/paths')
+const APP_INFO = require('./config/app_info')
 const validate = require('webpack-validator')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-
-// console.log("PATHS: ", PATHS)
 
 var config = {
   context: PATHS.app,
@@ -17,7 +15,7 @@ var config = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'Morem Ipsum - One-click Lorem Ipsum',
+      title: APP_INFO.windowTitle,
       template: PATHS.indexTemplate,
       inject: 'body',
       filename: 'index.html'
