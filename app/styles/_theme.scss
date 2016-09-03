@@ -9,8 +9,11 @@ body {
 	background-color:white;
 	color: $primary-text-color;
 }
-#main-content {
-	margin-top: $main-content-margin-top;
+#app-header {
+	background-color:white;
+}
+#app-footer {
+	background-color:white;
 }
 
 h1 {

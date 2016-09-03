@@ -5,8 +5,8 @@ import ClipboardBtn from './ClipboardBtn'
 
 const AppHeader = props => {
   return (
-    <header className='fixed-header'>
-      <div className='flex-row flex-vertical-baseline'>
+    <header id="app-header">
+      <div className='app-header-content flex-row flex-vertical-baseline'>
         <div className='flex-main-content'>
           <TextHeading text={props.title} />
         </div>

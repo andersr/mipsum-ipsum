@@ -1,20 +1,19 @@
-@import "vendor/normalize";
+// CONFIG/VARIABLES
 @import "config/layout";
 @import "config/fonts";
 @import "config/colors";
-@import "base";
-@import "layouts/flex_layout";
-@import "layouts/full_height";
+
+// HELPERS/MIXINS
+@import "helpers/flex_layout";
+
+// RESET
+@import "vendor/normalize";
 
 // COMPONENTS
-@import "components/app_header";
-@import "components/app_footer";
 @import "components/buttons";
 @import "components/lists";
-// @import "components/clipboard_btn";
 
-//ICONS - https://octicons.github.com/
-// @import "../../node_modules/octicons/index.scss";
-
-
+// MAIN STYLES
+@import "base";
+@import "layout";
 @import "theme";

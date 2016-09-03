@@ -1,0 +1,43 @@
+// ******* FULL HEIGHT VIEWPORT *******
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+}
+
+#app-container {
+  min-height: 100vh;
+  @include flex-column;
+  padding-left: $app-container-padding-left-right;
+  padding-right: $app-container-padding-left-right;
+  max-width: $app-max-width;
+  margin: 0 auto;
+}
+
+#app-header {
+  position: fixed;
+  top: 0;
+  left:0;
+  right:0;
+  height: $app-header-height;
+
+  .app-header-content {
+    padding-left: $app-container-padding-left-right;
+    padding-right: $app-container-padding-left-right;
+  }
+}
+
+#main-content {
+	flex: 1;
+	@include flex-column;
+  margin-top: $main-content-margin-top;
+}
+
+#app-footer {
+  position: fixed;
+  bottom: 0;
+  left:0;
+  right: 0;
+  height: $app-footer-height;
+}
