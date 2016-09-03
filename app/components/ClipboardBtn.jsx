@@ -29,7 +29,7 @@ export default class ClipboardBtn extends React.Component {
   }
 
   render () {
-    const btnClasses = classnames('clipboard-btn', {
+    const btnClasses = classnames('btn icon-btn clipboard-btn', {
       'copied': this.state.copied
     })
 
