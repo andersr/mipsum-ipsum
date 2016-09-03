@@ -6,23 +6,20 @@ const App = props => {
   return (
     <div id='app-container'>
     <AppHeader
+      {...props}
       title={props.staticContent.appTitle}
       tagline={props.staticContent.appTagline} />
       <div id='main-content'>
-        <List listItems={props.textBlocks} />
+        <List listItems={props.listItems} />
       </div>
     </div>
   )
 }
 
-export default App
-
 App.propTypes = {
   staticContent: React.PropTypes.object,
-  textBlocks: React.PropTypes.array
+  textBlocks: React.PropTypes.string,
+  listItems: React.PropTypes.array
 }
 
-//
-// <AppHeader
-//   title={props.staticContent.appTitle}
-//   tagline={props.staticContent.appTagline} />
+export default App
