@@ -14,7 +14,7 @@ export default class AppContainer extends React.Component {
   addTextBlock () {
     const newBlock = randomWordParagraph(this.props.sourceWords)
     this.setState({
-      listItems: this.state.listItems.concat([newBlock])
+      textBlocks: this.state.textBlocks.concat([newBlock])
     })
   }
 
@@ -23,11 +23,12 @@ export default class AppContainer extends React.Component {
   }
 
   render () {
+    //console.log("props: ", this.props)
     // const newParagraph = ' \n\n'
     // const textBlocks = this.state.listItems.join(newParagraph)
 
     return (
-      <App {...this.props} textBlocks={this.state.textBlocks} />
+    <App {...this.props} textBlocks={this.state.textBlocks} />
     )
   }
 }
