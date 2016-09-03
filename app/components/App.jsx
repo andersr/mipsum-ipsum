@@ -13,7 +13,7 @@ const App = props => {
       <div id='main-content'>
         <List listItems={props.listItems} />
       </div>
-      <AppFooter />
+      <AppFooter {...props} />
     </div>
   )
 }

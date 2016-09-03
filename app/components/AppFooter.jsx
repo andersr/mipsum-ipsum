@@ -1,11 +1,10 @@
 import React from 'react'
+import Btn from './Btn'
 
 const AppFooter = props => {
   return (
-    <footer className='fixed-footer flex-row'>
-        <div className='flex-main-content'>
-        Add Text
-        </div>
+    <footer className='fixed-footer flex-row flex-centered'>
+      <Btn label={'Add block'} handleClick={() => props.addTextBlock()} />
     </footer>
   )
 }

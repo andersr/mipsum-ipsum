@@ -8,7 +8,6 @@ export default class AppContainer extends React.Component {
     this.state = {
       listItems: []
     }
-    this.addTextBlock.bind(this)
   }
 
   addTextBlock () {
@@ -26,7 +25,8 @@ export default class AppContainer extends React.Component {
     const textBlocks = this.state.listItems.join(' \n\n')
 
     return (
-    <App {...this.props} listItems={this.state.listItems} textBlocks={textBlocks} />
+    <App {...this.props} listItems={this.state.listItems} textBlocks={textBlocks}
+    addTextBlock={this.addTextBlock.bind(this)} />
     )
   }
 }
@@ -35,9 +35,3 @@ AppContainer.propTypes = {
   staticContent: React.PropTypes.object,
   sourceWords: React.PropTypes.array
 }
-
-// <div>
-//   <ClipboardBtn clipboardText={textBlocks} />
-//   <List listItems={this.state.listItems} />
-//   <Btn label={"Add block"} handleClick={this.addTextBlock.bind(this)} />
-// </div>
