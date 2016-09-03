@@ -1,3 +1,20 @@
+.flex-main-content {
+  flex: 1;
+}
+
+.flex-row {
+  display: flex;
+  flex-flow: row;
+}
+
+.flex-row.flex-centered {
+  justify-content: center;
+}
+
+.flex-row.flex-vertical-baseline {
+  align-items: baseline;
+}
+
 /*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */
 
 html {
@@ -184,77 +201,24 @@ textarea {
   font: inherit;
 }
 
-html {
-  box-sizing: border-box;
+.icon-btn {
+  background-color: transparent;
+  border: none;
+  text-align: center;
 }
 
-*,:after,:before {
-  box-sizing: inherit;
+.icon-btn:focus {
+  outline: 0;
 }
 
-button {
-  cursor: pointer;
+.icon-text-btn {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  padding: .75em 1em;
 }
 
-.flex-main-content {
-  flex: 1;
-}
-
-.flex-row {
-  display: flex;
-  flex-flow: row;
-}
-
-.flex-row.flex-centered {
-  justify-content: center;
-}
-
-.flex-row.flex-vertical-baseline {
-  align-items: baseline;
-}
-
-html {
-  height: 100%;
-}
-
-body {
-  min-height: 100%;
-}
-
-#app-container {
-  min-height: 100vh;
-  display: flex;
-  flex-flow: column;
-  padding: 1em 2em;
-  max-width: 40em;
-  margin: 0 auto;
-}
-
-#main-content {
-  flex: 1;
-  display: flex;
-  flex-flow: column;
-}
-
-.fixed-header {
-  top: 0;
-  height: 5em;
-}
-
-.fixed-footer,.fixed-header {
-  position: fixed;
-  left: 0;
-  right: 0;
-}
-
-.fixed-footer {
-  bottom: 0;
-  height: 3em;
-}
-
-.list-no-bullets {
-  list-style-type: none;
-  padding-left: 0;
+.icon-text-btn:hover {
+  background-color: #eee;
 }
 
 .clipboard-btn {
@@ -293,6 +257,69 @@ body {
   }
 }
 
+.list-no-bullets {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,:after,:before {
+  box-sizing: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+}
+
+#app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-flow: column;
+  padding-left: 1em;
+  padding-right: 1em;
+  max-width: 40em;
+  margin: 0 auto;
+}
+
+#app-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 7.5em;
+}
+
+#app-header .app-header-content {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+#main-content {
+  flex: 1;
+  display: flex;
+  flex-flow: column;
+  margin-top: 7.5em;
+}
+
+#app-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3em;
+}
+
 body {
   background-color: #eee;
   color: #212121;
@@ -302,12 +329,11 @@ body {
 }
 
 #app-container {
-  background-color: #fff;
   color: #212121;
 }
 
-#main-content {
-  margin-top: 5em;
+#app-container,#app-footer,#app-header {
+  background-color: #fff;
 }
 
 h1 {
