@@ -1,22 +1,21 @@
 import React from 'react'
 import AppHeader from './AppHeader'
-import LipsumListContainer from '../containers/LipsumListContainer'
-import STATIC_TEXT from '../../libs/static_text'
-import LATIN_WORDS from '../../libs/latin_words'
+import List from '../components/List'
 
-export default class App extends React.Component {
-  constructor (props) {
-    super(props)
-  }
-
-  render () {
-    return (
-      <div id='app-container'>
-        <AppHeader title={STATIC_TEXT.appInfo.title} tagline={STATIC_TEXT.appInfo.tagline} />
-        <div id='main-content'>
-        <LipsumListContainer lipsumData={LATIN_WORDS} />
-        </div>
+const App = props => {
+  return (
+    <div id='app-container'>
+      <AppHeader
+        title={props.staticContent.appTitle}
+        tagline={props.staticContent.appTagline} />
+      <div id='main-content'>
+      <List listData={props.textBlocks} />
       </div>
-    )
-  }
+    </div>
+  )
+}
+
+App.propTypes = {
+  staticContent: React.PropTypes.object,
+  textBlocks: React.PropTypes.array
 }

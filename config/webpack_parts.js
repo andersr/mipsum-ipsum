@@ -1,6 +1,4 @@
 const webpack = require('webpack')
-const CONFIG = require('./webpack')
-
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const PurifyCSSPlugin = require('purifycss-webpack-plugin')
