@@ -11,9 +11,6 @@ const AppHeader = props => {
         </div>
         <Paragraph text={props.tagline} style='secondary-text' />
         </div>
-      <div className='flex-row flex-centered'>
-        Content
-      </div>
    </header>
   )
 }
@@ -24,3 +21,7 @@ AppHeader.propTypes = {
   title: React.PropTypes.string.isRequired,
   tagline: React.PropTypes.string
 }
+
+// <div className='flex-row flex-centered'>
+//   Content
+// </div>
