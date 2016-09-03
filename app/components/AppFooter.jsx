@@ -1,10 +1,12 @@
 import React from 'react'
+import Icon from './Icon'
 import Btn from './Btn'
 
 const AppFooter = props => {
+  const addIcon = <Icon icon={'octicon-plus'} />
   return (
     <footer className='fixed-footer flex-row flex-centered'>
-      <Btn label={'Add block'} handleClick={() => props.addTextBlock()} />
+      <Btn icon={addIcon} handleClick={() => props.addTextBlock()} />
     </footer>
   )
 }
