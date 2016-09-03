@@ -4,7 +4,6 @@ import Paragraph from './Paragraph'
 import ClipboardBtn from './ClipboardBtn'
 
 const AppHeader = props => {
-  // console.log("props.textBlocks: ", props.textBlocks)
   return (
     <header className='fixed-header'>
       <div className='flex-row flex-vertical-baseline'>

@@ -1,7 +1,7 @@
 import React from 'react'
 import Clipboard from 'clipboard'
 import classnames from 'classnames'
-import Octicon from 'react-octicon'
+import Icon from './Icon'
 
 export default class ClipboardBtn extends React.Component {
   constructor (props) {
@@ -34,7 +34,7 @@ export default class ClipboardBtn extends React.Component {
     })
 
     return (
-      <button className={btnClasses} data-clipboard-text={this.props.clipboardText} onClick={this.handleClick.bind(this)}><span className='icon octicon octicon-clippy'></span> {this.props.label}</button>
+      <button className={btnClasses} data-clipboard-text={this.props.clipboardText} onClick={this.handleClick.bind(this)}><Icon icon={'octicon-clippy'} /> {this.props.label}</button>
     )
   }
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import AppHeader from './AppHeader'
+import AppFooter from './AppFooter'
 import List from '../components/List'
 
 const App = props => {
@@ -12,6 +13,7 @@ const App = props => {
       <div id='main-content'>
         <List listItems={props.listItems} />
       </div>
+      <AppFooter />
     </div>
   )
 }
