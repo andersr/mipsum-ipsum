@@ -236,6 +236,22 @@ body {
   flex-flow: column;
 }
 
+.fixed-header {
+  top: 0;
+  height: 5em;
+}
+
+.fixed-footer,.fixed-header {
+  position: fixed;
+  left: 0;
+  right: 0;
+}
+
+.fixed-footer {
+  bottom: 0;
+  height: 3em;
+}
+
 .list-no-bullets {
   list-style-type: none;
   padding-left: 0;
@@ -288,6 +304,10 @@ body {
 #app-container {
   background-color: #fff;
   color: #212121;
+}
+
+#main-content {
+  margin-top: 5em;
 }
 
 h1 {
