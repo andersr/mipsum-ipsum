@@ -12,6 +12,8 @@ body {
 .main-content {
 	background-color:white;
 	color: $primary-text-color;
+font-family: 'Open Sans', sans-serif;
+font-size: 1.2em;
 
 	//Internal shadow, using http://www.cssmatic.com/box-shadow
 	-webkit-box-shadow: inset 0px 0px 8px 2px rgba(97,97,97,1);
