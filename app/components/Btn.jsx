@@ -1,26 +1,22 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import classnames from 'classnames'
 
-const Btn = props => {
-  const isIconBtn = props.icon !== null
-  const btnClasses = classnames('btn', {
-    'icon-btn': isIconBtn,
-    'btn--round': props.isRound,
-    'btn--inverted': props.inverted,
-    'btn--drop-shadow': props.dropShadow
-  })
-  return (
-    <button className={btnClasses} onClick={props.handleClick}>{props.icon}{props.label}</button>
+const Btn = ({ dropShadow, icon, inverted, label, handleClick, isRound }) => (
+    <button className={classnames('btn', {
+      'icon-btn': !!icon,
+      'btn--round': isRound,
+      'btn--inverted': inverted,
+      'btn--drop-shadow': dropShadow
+    })} onClick={handleClick}>{icon}{label}</button>
   )
-}
 
 Btn.propTypes = {
-  handleClick: React.PropTypes.func.isRequired,
-  label: React.PropTypes.string,
-  icon: React.PropTypes.object,
-  isRound: React.PropTypes.bool,
-  dropShadow: React.PropTypes.bool,
-  inverted: React.PropTypes.bool
+  handleClick: PropTypes.func.isRequired,
+  label: PropTypes.string,
+  icon: PropTypes.object,
+  isRound: PropTypes.bool,
+  dropShadow: PropTypes.bool,
+  inverted: PropTypes.bool
 }
 
 Btn.defaultProps = {
