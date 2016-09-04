@@ -233,7 +233,7 @@ button {
   padding: .75em 1em;
 }
 
-.btn--round,.icon-text-btn:hover {
+.icon-text-btn:hover {
   background-color: #eee;
 }
 
@@ -242,6 +242,7 @@ button {
   text-align: center;
   display: table-cell;
   vertical-align: middle;
+  padding: .25em .45em;
 }
 
 .clipboard-btn {
@@ -289,16 +290,16 @@ button {
   padding-left: 0;
 }
 
-html {
+body,html {
   height: 100%;
 }
 
 body {
-  min-height: 100%;
+  overflow-y: hidden;
 }
 
 .app-container {
-  min-height: 100vh;
+  height: 100vh;
   margin: 0 auto;
   display: flex;
   flex-flow: column;
@@ -317,6 +318,7 @@ body {
   flex: 1;
   margin-top: 1em;
   padding: 1em;
+  overflow-y: auto;
 }
 
 .app-footer {
@@ -329,10 +331,6 @@ body {
   justify-content: center;
   align-items: center;
   height: 4.5em;
-}
-
-.add-button {
-  border-radius: 50%;
 }
 
 body {
@@ -368,11 +366,20 @@ body {
   font-size: 1.1em;
 }
 
+.btn--inverted {
+  background-color: #303f9f;
+  color: #fff;
+}
+
+.btn--drop-shadow {
+  box-shadow: -3px 3px 4px 0 rgba(0,0,0,.25);
+}
+
 .icon {
   font-size: 1.5em;
 }
 
 .icon.icon--lg {
-  font-size: 2em;
+  font-size: 1.75em;
 }
 /*# sourceMappingURL=styles.css.map*/
