@@ -290,6 +290,14 @@ button {
   padding-left: 0;
 }
 
+.list>li {
+  padding-bottom: .75em;
+}
+
+.list>li:last-child {
+  padding-bottom: 0;
+}
+
 body,html {
   height: 100%;
 }
@@ -349,6 +357,8 @@ body {
 .main-content {
   background-color: #fff;
   color: #212121;
+  font-family: Open Sans,sans-serif;
+  font-size: 1.2em;
   box-shadow: inset 0 0 8px 2px #616161;
 }
 
