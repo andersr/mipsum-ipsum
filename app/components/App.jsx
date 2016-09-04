@@ -1,6 +1,6 @@
 import React from 'react'
 import AppHeader from './AppHeader'
-import AppFooter from './AppFooter'
+// import AppFooter from './AppFooter'
 import List from '../components/List'
 import Btn from './Btn'
 import Icon from '../components/Icon'
@@ -19,16 +19,12 @@ const App = props => {
       </div>
       <div className='app-footer'>
         <div className='add-button'>
-          <Btn icon={plusIcon} isRound={true} handleClick={props.addTextBlock} />
+          <Btn icon={plusIcon} isRound={true} inverted={true} dropShadow={true} handleClick={props.addTextBlock} />
         </div>
     </div>
     </div>
   )
 }
-
-//
-//
-//
 
 App.propTypes = {
   staticContent: React.PropTypes.object,

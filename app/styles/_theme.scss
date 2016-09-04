@@ -26,12 +26,6 @@ body {
 	}
 }
 
-// .add-button {
-//   //Add z-index and drop shadow
-// 	background-color:$primary-color-dark;
-// 	color:$primary-text-color--inverted;
-// }
-
 
 .brand-text {
 	font-family: $brand-font;
@@ -44,6 +38,17 @@ body {
 	// color: $secondary-text-color;
 }
 
+.btn--inverted {
+	background-color:$primary-color-dark;
+	color:$primary-text-color--inverted;
+}
+
+.btn--drop-shadow {
+		// Created with
+		-webkit-box-shadow: -3px 3px 4px 0px rgba(0,0,0,0.25);
+-moz-box-shadow: -3px 3px 4px 0px rgba(0,0,0,0.25);
+box-shadow: -3px 3px 4px 0px rgba(0,0,0,0.25);
+}
 
 .icon {
 	font-size: $icon-size-default;

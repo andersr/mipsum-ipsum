@@ -3,11 +3,12 @@ html {
   height: 100%;
 }
 body {
-  min-height: 100%;
+  height: 100%;
+  overflow-y: hidden;
 }
 
 .app-container {
-  min-height: 100vh;
+  height: 100vh;
   margin: 0 auto;
   @include flex-column;
 
@@ -27,8 +28,7 @@ body {
 	flex: 1;
   margin-top: $main-content-margin-top;
   padding: $main-content-padding;
-	// @include flex-column;
-  // margin-top: $main-content-margin-top;
+  overflow-y: auto;
 }
 
 .app-footer {
@@ -40,38 +40,6 @@ body {
  height: 4.5em;
 }
 
-.add-button {
-  border-radius: 50%;
-}
-
-// position: fixed;
-// bottom:1.5em;
-// width: 3em;
-// height: 3em;
-// left: 45%;
-// color:black;
-// // margin:0 auto;
-// border-radius: 50%;
-// #app-header {
-//   position: fixed;
-//   top: 0;
-//   min-width: 300px;
-//   max-width: $app-max-width;
-//   margin: 0 auto;
-//   height: $app-header-height;
-//
-//   .app-header-content {
-//     padding-left: $app-container-padding-left-right;
-//     padding-right: $app-container-padding-left-right;
-//   }
-// }
-//
-
-//
-// #app-footer {
-//   position: fixed;
-//   bottom: 0;
-//   width: $app-max-width;
-//   margin: 0 auto;
-//   height: $app-footer-height;
+// .add-button {
+//   border-radius: 50%;
 // }
