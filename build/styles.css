@@ -11,6 +11,10 @@
   justify-content: center;
 }
 
+.flex-row.flex-vertical-middle {
+  align-items: center;
+}
+
 .flex-row.flex-vertical-baseline {
   align-items: baseline;
 }
@@ -201,6 +205,18 @@ textarea {
   font: inherit;
 }
 
+html {
+  box-sizing: border-box;
+}
+
+*,:after,:before {
+  box-sizing: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
 .icon-btn {
   background-color: transparent;
   border: none;
@@ -217,8 +233,15 @@ textarea {
   padding: .75em 1em;
 }
 
-.icon-text-btn:hover {
+.btn--round,.icon-text-btn:hover {
   background-color: #eee;
+}
+
+.btn--round {
+  border-radius: 50%;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
 }
 
 .clipboard-btn {
@@ -257,21 +280,13 @@ textarea {
   }
 }
 
+.list {
+  margin-top: 0;
+}
+
 .list-no-bullets {
   list-style-type: none;
   padding-left: 0;
-}
-
-html {
-  box-sizing: border-box;
-}
-
-*,:after,:before {
-  box-sizing: inherit;
-}
-
-button {
-  cursor: pointer;
 }
 
 html {
@@ -282,77 +297,82 @@ body {
   min-height: 100%;
 }
 
-#app-container {
+.app-container {
   min-height: 100vh;
-  display: flex;
-  flex-flow: column;
-  padding-left: 1em;
-  padding-right: 1em;
-  max-width: 40em;
   margin: 0 auto;
-}
-
-#app-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 7.5em;
-}
-
-#app-header .app-header-content {
-  padding-left: 1em;
-  padding-right: 1em;
-}
-
-#main-content {
-  flex: 1;
   display: flex;
   flex-flow: column;
-  margin-top: 7.5em;
+  padding: .5em 0;
+  padding-left: .75em;
+  padding-right: .75em;
+  max-width: 40em;
 }
 
-#app-footer {
+.app-header h1,.app-header p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.main-content {
+  flex: 1;
+  margin-top: 1em;
+  padding: 1em;
+}
+
+.app-footer {
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 3em;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+  align-items: center;
+  height: 4.5em;
+}
+
+.add-button {
+  border-radius: 50%;
 }
 
 body {
-  background-color: #eee;
+  background-color: #c5cae9;
   color: #212121;
   font-family: Gill Sans,Gill Sans MT,Calibri,sans-serif;
   font-size: 20px;
   line-height: normal;
 }
 
-#app-container {
-  color: #212121;
+.app-container {
+  background-color: #303f9f;
+  color: #fff;
 }
 
-#app-container,#app-footer,#app-header {
+.main-content {
   background-color: #fff;
+  color: #212121;
+  box-shadow: inset 0 0 8px 2px #616161;
 }
 
-h1 {
+.app-header h1 {
   font-weight: 400;
   font-size: 1.4em;
 }
 
-.secondary-text,h1 {
+.app-header h1,.brand-text {
   font-family: Teko,sans-serif;
 }
 
 .secondary-text {
   font-weight: 300;
   font-size: 1.1em;
-  color: #9e9e9e;
 }
 
 .icon {
-  color: #9e9e9e;
-  font-size: 1.2em;
+  font-size: 1.5em;
+}
+
+.icon.icon--lg {
+  font-size: 2em;
 }
 /*# sourceMappingURL=styles.css.map*/
