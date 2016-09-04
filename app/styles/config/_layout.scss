@@ -1,6 +1,13 @@
 // APP LAYOUT
-$app-max-width: 40em;
-$app-container-padding-left-right: 1em;
-$app-header-height: 7.5em;
-$app-footer-height: 3em;
-$main-content-margin-top: $app-header-height;
+
+// APP CONTAINER
+$app-container-max-width: 40em;
+$app-container-padding: .5em 0;
+$app-container-padding-left-right: .75em;
+
+// MAIN CONTENT
+$main-content-margin-top: 1em;
+$main-content-padding: 1em;
+// $app-header-height: 7.5em;
+// $app-footer-height: 3em;
+// $main-content-margin-top: $app-header-height;

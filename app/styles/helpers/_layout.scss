@@ -1,8 +1,21 @@
+// .vertically-centered {
+//   display: table-cell;
+//   vertical-align: middle;
+// }
+
+@mixin fixed-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+// ******* FLEX LAYOUT *******
 .flex-main-content {
   flex: 1;
 }
 
-// ******* FLEX COLUMN *******
+// FLEX COLUMN
 @mixin flex-column {
   display: flex;
   flex-flow: column;
@@ -11,7 +24,7 @@
   @include flex-column;
 }
 
-// ******* FLEX ROW *******
+// FLEX ROW
 @mixin flex-row {
   display: flex;
   flex-flow: row nowrap;

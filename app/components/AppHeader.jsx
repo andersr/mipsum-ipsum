@@ -5,19 +5,28 @@ import ClipboardBtn from './ClipboardBtn'
 
 const AppHeader = props => {
   return (
-    <header id="app-header">
+    <header className='app-header'>
       <div className='app-header-content flex-row flex-vertical-baseline'>
         <div className='flex-main-content'>
           <TextHeading text={props.title} />
         </div>
-          <Paragraph text={props.tagline} style='secondary-text' />
+          <Paragraph text={props.tagline} style='secondary-text brand-text' />
       </div>
-      <div className='flex-row flex-centered'>
+      <div className='flex-row flex-centered flex-vertical-middle'>
+
          <ClipboardBtn clipboardText={props.textBlocks} />
-      </div>
+        </div>
+
     </header>
   )
 }
+
+// &.flex-centered {
+//    justify-content: center;
+// }
+// &.flex-vertical-middle {
+//   align-items: center;
+// }
 
 AppHeader.propTypes = {
   title: React.PropTypes.string.isRequired,

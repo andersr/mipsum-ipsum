@@ -1,19 +1,20 @@
-// CONFIG/VARIABLES
+// CONFIG
 @import "config/layout";
 @import "config/fonts";
+@import "config/icons";
 @import "config/colors";
 
-// HELPERS/MIXINS
-@import "helpers/flex_layout";
+// HELPERS
+@import "helpers/_layout";
 
 // RESET
-@import "vendor/normalize";
+@import "reset/normalize";
+@import "reset/natural_box_model";
 
 // COMPONENTS
 @import "components/buttons";
 @import "components/lists";
 
 // MAIN STYLES
-@import "base";
 @import "layout";
 @import "theme";

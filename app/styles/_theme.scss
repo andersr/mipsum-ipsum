@@ -1,36 +1,57 @@
 body {
-	background-color: $color-gray-8;
+	background-color: $primary-color-light;
 	color: $primary-text-color;
 	font-family: $base-font-family;
 	font-size: $base-font-size;
 	line-height: $base-line-height;
 }
-#app-container {
+.app-container {
+	background-color:$primary-color-dark;
+	color:$primary-text-color--inverted;
+}
+.main-content {
 	background-color:white;
 	color: $primary-text-color;
+
+	//Internal shadow, using http://www.cssmatic.com/box-shadow
+	-webkit-box-shadow: inset 0px 0px 8px 2px rgba(97,97,97,1);
+	-moz-box-shadow: inset 0px 0px 8px 2px rgba(97,97,97,1);
+	box-shadow: inset 0px 0px 8px 2px rgba(97,97,97,1);
 }
-#app-header {
-	background-color:white;
-}
-#app-footer {
-	background-color:white;
+.app-header {
+	h1 {
+		font-family: $brand-font;
+		font-weight: 400;
+		font-size: 1.4em;
+	}
 }
 
-h1 {
+// .add-button {
+//   //Add z-index and drop shadow
+// 	background-color:$primary-color-dark;
+// 	color:$primary-text-color--inverted;
+// }
+
+
+.brand-text {
 	font-family: $brand-font;
-	font-weight: 400;
-	font-size: 1.4em;
 }
 
 .secondary-text {
-	font-family: $brand-font;
+	// font-family: $brand-font;
 	font-weight: 300;
 	font-size: 1.1em;
-	color: $color-gray-5;
+	// color: $secondary-text-color;
 }
 
 
 .icon {
-	color: $accent-color;
-	font-size: 1.2em;
+	font-size: $icon-size-default;
+
+	&.icon--lg {
+		font-size: $icon-size-lg;
+	}
+	// &.icon--inverted {
+	// 	color: $primary-text-color--inverted;
+	// }
 }
