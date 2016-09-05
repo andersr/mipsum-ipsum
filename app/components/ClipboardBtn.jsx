@@ -56,7 +56,7 @@ export default class ClipboardBtn extends React.Component {
     return (
       <div>
       <button className={btnClasses} onClick={this.handleClick.bind(this)}
-       data-clipboard-target='#test'><Icon icon={'octicon-clippy'} /> {this.setBtnLabel(this.props.paragraphCount)}</button>
+       data-clipboard-target='.lipsum-blocks'><Icon icon={'octicon-clippy'} /> {this.setBtnLabel(this.props.paragraphCount)}</button>
       {this.state.copyManually ? copyManuallyAlert : null}
       </div>
     )

@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react'
 
 const MultilineInput = (props) => {
   return (
-        <textarea className='invisible flex-main-content' id='test'
+        <textarea className='lipsum-blocks invisible flex-main-content no-horizontal-scrollbars'
           value={props.content}
         />
   )

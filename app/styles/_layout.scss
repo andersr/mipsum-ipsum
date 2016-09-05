@@ -26,9 +26,13 @@ body {
 
 .main-content {
 	flex: 1;
-  margin-top: $main-content-margin-top;
-  padding: $main-content-padding;
+  margin-top: 1em;
+  padding:$main-content-padding;
   overflow-y: auto;
+  .lipsum-blocks {
+    padding:.5em;
+
+  }
 }
 
 .app-footer {
