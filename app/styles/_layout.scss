@@ -1,4 +1,3 @@
-// ******* FULL HEIGHT VIEWPORT *******
 html {
   height: 100%;
 }
@@ -26,11 +25,11 @@ body {
 
 .main-content {
 	flex: 1;
-  margin-top: 1em;
+  margin-top: $main-content-margin-top;
   padding:$main-content-padding;
-  overflow-y: auto;
+  // overflow-y: auto;
   .lipsum-blocks {
-    padding:.5em;
+    padding:$lipsum-blocks-padding;
 
   }
 }
@@ -41,9 +40,5 @@ body {
  flex-flow: row nowrap;
  justify-content: center;
  align-items: center;
- height: 4.5em;
+ height:$app-footer-height;
 }
-
-// .add-button {
-//   border-radius: 50%;
-// }
