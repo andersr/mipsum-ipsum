@@ -1,5 +1,14 @@
+.no-horizontal-scrollbars {
+  overflow-x: hidden;
+}
+
 .flex-main-content {
   flex: 1;
+}
+
+.flex-column {
+  display: flex;
+  flex-flow: column;
 }
 
 .flex-row {
@@ -285,17 +294,18 @@ button {
   margin-top: 0;
 }
 
-.list-no-bullets {
-  list-style-type: none;
-  padding-left: 0;
-}
-
 .list>li {
   padding-bottom: .75em;
 }
 
 .list>li:last-child {
   padding-bottom: 0;
+}
+
+textarea.invisible {
+  outline: none;
+  resize: none;
+  border: none;
 }
 
 body,html {
@@ -325,8 +335,12 @@ body {
 .main-content {
   flex: 1;
   margin-top: 1em;
-  padding: 1em;
+  padding: .25em;
   overflow-y: auto;
+}
+
+.main-content .lipsum-blocks {
+  padding: .5em;
 }
 
 .app-footer {
