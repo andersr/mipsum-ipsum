@@ -14,7 +14,7 @@ const App = props => {
       {...props}
       title={props.staticContent.appTitle}
       tagline={props.staticContent.appTagline} />
-      <div className='main-content'>
+      <div id='lipsumBlocks' className='main-content'>
         <List listItems={props.listItems} />
       </div>
       <div className='app-footer'>
