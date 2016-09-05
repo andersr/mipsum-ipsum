@@ -242,7 +242,7 @@ button {
   text-align: center;
   display: table-cell;
   vertical-align: middle;
-  padding: .25em .45em;
+  padding: .35em .5em;
 }
 
 .clipboard-btn {
