@@ -1,9 +1,9 @@
 import React from 'react'
 import AppHeader from './AppHeader'
-// import AppFooter from './AppFooter'
 import List from '../components/List'
 import Btn from './Btn'
 import Icon from '../components/Icon'
+// import AddLipsumBlock from '../containers/AddLipsumBlock'
 
 const App = props => {
   const plusIcon = <Icon icon='octicon-plus' style='icon--lg' />

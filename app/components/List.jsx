@@ -1,13 +1,21 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 import classnames from 'classnames'
 
-const List = props => <ul className={classnames('list', props.style)}>{props.listItems.map((item, key) => <li key={key}>{item}</li>)}</ul>
+const List = ({ listItems, style }) => (
+  <ul className={classnames('list', style)}>
+    {
+      listItems.map((item, key) => (
+        <li key={key}>{item}</li>)
+      )
+    }
+  </ul>
+)
 
 export default List
 
 List.propTypes = {
-  listItems: React.PropTypes.array.isRequired,
-  style: React.PropTypes.string
+  listItems: PropTypes.array.isRequired,
+  style: PropTypes.string
 }
 
 List.defaultProps = {

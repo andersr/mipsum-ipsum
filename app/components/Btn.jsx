@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import classnames from 'classnames'
 
-const Btn = ({ dropShadow, icon, inverted, label, handleClick, isRound }) => (
+const Btn = ({ dropShadow, icon, inverted, isRound, label, handleClick }) => (
     <button className={classnames('btn', {
       'icon-btn': !!icon,
       'btn--round': isRound,

@@ -13,20 +13,12 @@ const AppHeader = props => {
           <Paragraph text={props.tagline} style='secondary-text brand-text' />
       </div>
       <div className='flex-row flex-centered flex-vertical-middle'>
-
-         <ClipboardBtn clipboardText={props.textBlocks} />
+         <ClipboardBtn {...props} clipboardText={props.textBlocks} />
         </div>
 
     </header>
   )
 }
-
-// &.flex-centered {
-//    justify-content: center;
-// }
-// &.flex-vertical-middle {
-//   align-items: center;
-// }
 
 AppHeader.propTypes = {
   title: React.PropTypes.string.isRequired,
