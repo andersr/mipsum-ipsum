@@ -29,7 +29,7 @@ const config = merge(
   webpack_parts.indexTemplate({title: STATIC_CONTENT.windowTitle, template: PATHS.indexTemplate}),
   webpack_parts.loadJSX([PATHS.app, PATHS.libs]),
   webpack_parts.loadFonts([PATHS.icons]),
-  webpack_parts.loadCSS([PATHS.icons]),
+  webpack_parts.loadCSS([PATHS.icons, PATHS.alerts, PATHS.alerts_jelly]),
   webpack_parts.loadSCSS([PATHS.styles])
 )
 

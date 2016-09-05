@@ -10,5 +10,7 @@ module.exports = {
   libs: path.join(__dirname, '../libs'),
   styles: path.join(__dirname, '../app/styles/main.scss'),
   icons: path.join(__dirname, '../node_modules/react-octicon'),
+  alerts: path.join(__dirname, '../node_modules/react-s-alert/dist/s-alert-default.css'),
+  alerts_jelly: path.join(__dirname, '../node_modules/react-s-alert/dist/s-alert-css-effects/jelly.css'),
   vendor: ['react']
 }
