@@ -8,7 +8,7 @@ import MultilineInput from '../components/MultilineInput'
 const App = props => {
   const plusIcon = <Icon icon='octicon-plus' style='icon--lg' />
   const clearIcon = <Icon icon='octicon-x' />
-  const clearBtn = <div className='app-footer-left'><Btn icon={clearIcon} isRound inverted dropShadow handleClick={props.addTextBlock} /></div>
+  const clearBtn = <div className='app-footer-left'><Btn icon={clearIcon} isRound inverted dropShadow handleClick={props.resetBlocks} /></div>
 
   return (
     <div className='app-container'>
@@ -18,7 +18,6 @@ const App = props => {
       tagline={props.staticContent.appTagline} />
       <div id='lipsumBlocks' className='main-content flex-column'>
         <MultilineInput content={props.textBlocks} />
-        <div className='app-footer-container'>
           <div className='app-footer'>
             {props.paragraphCount > 1 ? clearBtn : null}
             <div className='app-footer-center flex-main-content'>
@@ -27,7 +26,6 @@ const App = props => {
           </div>
         </div>
       </div>
-    </div>
   )
 }
 
