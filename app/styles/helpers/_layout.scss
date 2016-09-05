@@ -3,10 +3,9 @@
 //   vertical-align: middle;
 // }
 
-.no-horizontal-scrollbars {
-  overflow-x: hidden;
+.align-center {
+  text-align: center;
 }
-
 @mixin fixed-bottom {
     position: fixed;
     bottom: 0;

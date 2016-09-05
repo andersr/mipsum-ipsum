@@ -30,15 +30,42 @@ body {
   // overflow-y: auto;
   .lipsum-blocks {
     padding:$lipsum-blocks-padding;
-
   }
 }
 
-.app-footer {
- @include fixed-bottom;
- display: flex;
- flex-flow: row nowrap;
- justify-content: center;
- align-items: center;
- height:$app-footer-height;
+.main-content {
+  position: relative;
+
+  .app-footer-left {
+    position: absolute;
+    z-index: 200;
+    bottom: .5em;
+    left: .5em;
+  }
+  .app-footer-center {
+    position: absolute;
+    z-index: 100;
+    bottom: .5em;
+    left:0;
+    right:0;
+    text-align: center;
+  }
+  // .app-footer-container {
+  //   position: absolute;
+  //   bottom: 0;
+  //   width: 100%;
+  //   // @include fixed-bottom;
+  //   height:$app-footer-height;
+  //   text-align: center;
+  //
+  //   // .app-footer {
+  //   //   display: flex;
+  //   //   flex-flow: row nowrap;
+  //   //   justify-content: center;
+  //   //   align-items: center;
+  //   //   max-width: $app-container-max-width;
+  //   //   // padding-left: 1em;
+  //   // }
+  //   // padding-left: 2em;
+  // }
 }
