@@ -30,7 +30,7 @@ export default class ClipboardBtn extends React.Component {
       setTimeout(() => {
         self.setState({ copyManually: false })
       }, 6000)
-      selectText('lipsumBlocks')
+      // selectText('lipsumBlocks')
     })
   }
 
@@ -55,14 +55,15 @@ export default class ClipboardBtn extends React.Component {
 
     return (
       <div>
-      <button className={btnClasses} onClick={this.handleClick.bind(this)} data-clipboard-text={this.props.clipboardText}><Icon icon={'octicon-clippy'} /> {this.setBtnLabel(this.props.paragraphCount)}</button>
+      <button className={btnClasses} onClick={this.handleClick.bind(this)}
+       data-clipboard-target='#test'><Icon icon={'octicon-clippy'} /> {this.setBtnLabel(this.props.paragraphCount)}</button>
       {this.state.copyManually ? copyManuallyAlert : null}
       </div>
     )
   }
 }
 
-//   <form onSubmit={this.handleClick.bind(this)}> data-clipboard-text={this.props.clipboardText}       </form>
+//   <form onSubmit={this.handleClick.bind(this)}> data-clipboard-text={this.props.clipboardText}       </form> data-clipboard-text={this.props.clipboardText}
 
 ClipboardBtn.propTypes = {
   label: PropTypes.string,

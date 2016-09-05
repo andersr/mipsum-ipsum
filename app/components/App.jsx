@@ -1,9 +1,9 @@
 import React from 'react'
 import AppHeader from './AppHeader'
-import List from '../components/List'
+// import List from '../components/List'
 import Btn from './Btn'
 import Icon from '../components/Icon'
-// import AddLipsumBlock from '../containers/AddLipsumBlock'
+import MultilineInput from '../components/MultilineInput'
 
 const App = props => {
   const plusIcon = <Icon icon='octicon-plus' style='icon--lg' />
@@ -15,7 +15,7 @@ const App = props => {
       title={props.staticContent.appTitle}
       tagline={props.staticContent.appTagline} />
       <div id='lipsumBlocks' className='main-content'>
-        <List listItems={props.listItems} />
+      <MultilineInput content={props.textBlocks} />
       </div>
       <div className='app-footer'>
         <div className='add-button'>

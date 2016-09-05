@@ -31,6 +31,8 @@ export default class AppContainer extends React.Component {
   render () {
     const textBlocks = this.state.listItems.join(' \n\n')
 
+    // console.log('textBlocks', textBlocks)
+
     return (
     <App {...this.props} listItems={this.state.listItems} paragraphCount={this.state.paragraphCount} textBlocks={textBlocks}
     addTextBlock={this.addTextBlock.bind(this)} />
