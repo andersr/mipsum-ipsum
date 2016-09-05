@@ -9,22 +9,23 @@ export default class ClipboardBtn extends React.Component {
   constructor (props) {
     super(props)
     this.clipboard = new Clipboard('.clipboard-btn')
+
     this.state = {
       copied: false,
       copyManually: false
     }
     const self = this
     this.clipboard.on('success', (e) => {
-      e.clearSelection()
       self.setState({ copied: true })
       setTimeout(() => {
         self.setState({ copied: false })
       }, 1500)
+      e.clearSelection()
     })
 
     this.clipboard.on('error', (e) => {
-      console.log('copy manually')
-      e.clearSelection()
+      // console.log('copy manually')
+      // e.clearSelection()
       self.setState({ copyManually: true })
       setTimeout(() => {
         self.setState({ copyManually: false })
@@ -46,7 +47,7 @@ export default class ClipboardBtn extends React.Component {
   }
 
   render () {
-    const copyManuallyMsg = "Please press ⌘-C to copy"
+    const copyManuallyMsg = "Please copy text manually"
     const copyManuallyAlert = <Paragraph text={copyManuallyMsg} />
     const btnClasses = classnames('btn icon-text-btn clipboard-btn', {
       'copied': this.state.copied, 'copy-manually': this.state.copyManually
@@ -54,12 +55,14 @@ export default class ClipboardBtn extends React.Component {
 
     return (
       <div>
-      <button className={btnClasses} data-clipboard-text={this.props.clipboardText} onClick={this.handleClick.bind(this)}><Icon icon={'octicon-clippy'} /> {this.setBtnLabel(this.props.paragraphCount)}</button>
+      <button className={btnClasses} onClick={this.handleClick.bind(this)} data-clipboard-text={this.props.clipboardText}><Icon icon={'octicon-clippy'} /> {this.setBtnLabel(this.props.paragraphCount)}</button>
       {this.state.copyManually ? copyManuallyAlert : null}
       </div>
     )
   }
 }
+
+//   <form onSubmit={this.handleClick.bind(this)}> data-clipboard-text={this.props.clipboardText}       </form>
 
 ClipboardBtn.propTypes = {
   label: PropTypes.string,
