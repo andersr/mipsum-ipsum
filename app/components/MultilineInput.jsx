@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react'
 
 const MultilineInput = (props) => {
   return (
-        <textarea id='test'
+        <textarea className='invisible flex-main-content' id='test'
           value={props.content}
         />
   )

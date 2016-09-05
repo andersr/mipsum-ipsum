@@ -14,7 +14,7 @@ const App = props => {
       {...props}
       title={props.staticContent.appTitle}
       tagline={props.staticContent.appTagline} />
-      <div id='lipsumBlocks' className='main-content'>
+      <div id='lipsumBlocks' className='main-content flex-column'>
       <MultilineInput content={props.textBlocks} />
       </div>
       <div className='app-footer'>
