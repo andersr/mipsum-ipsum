@@ -1,6 +1,5 @@
 import React from 'react'
 import App from '../components/App'
-// import { connect } from 'react-redux'
 import randomWordParagraph from '../../libs/random_word_paragraph'
 
 export default class AppContainer extends React.Component {
@@ -12,18 +11,19 @@ export default class AppContainer extends React.Component {
     }
   }
 
+  newBlock () {
+    return randomWordParagraph(this.props.sourceWords, this.props.minWords, this.props.maxWords)
+  }
   resetBlocks () {
-    const newBlock = randomWordParagraph(this.props.sourceWords)
     this.setState({
-      listItems: [newBlock],
+      listItems: [this.newBlock()],
       paragraphCount: 1
     })
   }
 
   addTextBlock () {
-    const newBlock = randomWordParagraph(this.props.sourceWords)
     this.setState({
-      listItems: this.state.listItems.concat([newBlock]),
+      listItems: this.state.listItems.concat([this.newBlock()]),
       paragraphCount: this.state.paragraphCount + 1
     })
   }
@@ -49,5 +49,12 @@ export default class AppContainer extends React.Component {
 
 AppContainer.propTypes = {
   staticContent: React.PropTypes.object,
-  sourceWords: React.PropTypes.array
+  sourceWords: React.PropTypes.array,
+  minWords: React.PropTypes.number,
+  maxWords: React.PropTypes.number
+}
+
+AppContainer.defaultProps = {
+  minWords: 25,
+  maxWords: 30
 }

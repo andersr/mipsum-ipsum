@@ -2,9 +2,10 @@
 
 import { capitalize, randomNumberBetween, shuffleItems } from './utils'
 
-export default function randomWordParagraph (srcWords) {
-  const totalWords = randomNumberBetween(20, 25)
-  const wordCollection = shuffleItems(srcWords).slice(0, totalWords)
+export default function randomWordParagraph (srcWords, minWords = 25, maxWords = 30) {
+  const totalWords = randomNumberBetween(minWords, maxWords)
+  const wordCollection = getItems(srcWords, totalWords)
+  const shuffledCollection = shuffleItems(wordCollection)
 
   return makeParagraph()
 
@@ -23,10 +24,22 @@ export default function randomWordParagraph (srcWords) {
 
   function makeSentence (start, length) {
     const end = start + length
-    let sentence = wordCollection.slice(start, end)
+    let sentence = shuffledCollection.slice(start, end)
     sentence[sentence.length - 1] += '.'
     sentence[0] = capitalize(sentence[0])
 
     return sentence.join(' ')
+  }
+
+  function getItems (src, count) {
+    let collection = []
+    let i = 0
+
+    while (collection.length < count) {
+      collection.push(src[i])
+      i === (src.length -1) ? i = 0 : i++
+    }
+
+    return collection
   }
 }
