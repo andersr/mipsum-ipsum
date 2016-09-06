@@ -15,7 +15,14 @@ body {
   padding-left: $app-container-padding-left-right;
   padding-right: $app-container-padding-left-right;
   max-width: $app-container-max-width;
+
+  @media screen and (max-width: $small-screen-breakpoint) {
+    padding-bottom: 80px;
+  }
 }
+
+
+
 .app-header {
 	h1, p {
 		margin-top: 0;

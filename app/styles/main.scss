@@ -5,6 +5,7 @@
 @import "config/colors";
 @import "config/lists";
 @import "config/z-indexes";
+@import "config/media-queries";
 
 // HELPERS
 @import "helpers/layout";
@@ -19,9 +20,6 @@
 @import "components/icons";
 @import "components/lists";
 @import "components/forms";
-
-//VENDOR
-// @import "node_modules/react-s-alert/dist/s-alert-default.css"
 
 // MAIN STYLES
 @import "layout";
