@@ -339,6 +339,12 @@ body {
   max-width: 40em;
 }
 
+@media screen and (max-width:420px) {
+  .app-container {
+    padding-bottom: 80px;
+  }
+}
+
 .app-header h1,.app-header p {
   margin-top: 0;
   margin-bottom: 0;
