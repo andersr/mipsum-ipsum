@@ -10,6 +10,7 @@
     "start": "node server.js",
     "dev": "node devServer.js",
     "deploy-staging": "git push staging master",
+    "deploy-prod": "git push production master",
     "build": "webpack --config ./webpack.prod.config.js --progress --colors",
     "build:run": "NODE_ENV=production node server.js"
   },
