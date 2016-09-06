@@ -1,7 +1,3 @@
-.no-horizontal-scrollbars {
-  overflow-x: hidden;
-}
-
 .flex-main-content {
   flex: 1;
 }
@@ -26,6 +22,10 @@
 
 .flex-row.flex-vertical-baseline {
   align-items: baseline;
+}
+
+.no-horizontal-scrollbars {
+  overflow-x: hidden;
 }
 
 /*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */
@@ -290,6 +290,18 @@ button {
   }
 }
 
+.icon {
+  font-size: 1.5em;
+}
+
+.icon.icon--lg {
+  font-size: 1.75em;
+}
+
+.icon.icon--sm {
+  font-size: 1.25em;
+}
+
 .list {
   margin-top: 0;
 }
@@ -336,23 +348,30 @@ body {
   flex: 1;
   margin-top: 1em;
   padding: .25em;
-  overflow-y: auto;
 }
 
 .main-content .lipsum-blocks {
   padding: .5em;
 }
 
-.app-footer {
-  position: fixed;
-  bottom: 0;
+.main-content {
+  position: relative;
+}
+
+.main-content .app-footer-left {
+  position: absolute;
+  z-index: 200;
+  bottom: .5em;
+  left: .75em;
+}
+
+.main-content .app-footer-center {
+  position: absolute;
+  z-index: 100;
+  bottom: .5em;
   left: 0;
   right: 0;
-  display: flex;
-  flex-flow: row;
-  justify-content: center;
-  align-items: center;
-  height: 4.5em;
+  text-align: center;
 }
 
 body {
@@ -395,15 +414,12 @@ body {
   color: #fff;
 }
 
+.btn--secondary {
+  background-color: #fff;
+  color: #9e9e9e;
+}
+
 .btn--drop-shadow {
   box-shadow: -3px 3px 4px 0 rgba(0,0,0,.25);
-}
-
-.icon {
-  font-size: 1.5em;
-}
-
-.icon.icon--lg {
-  font-size: 1.75em;
 }
 /*# sourceMappingURL=styles.css.map*/

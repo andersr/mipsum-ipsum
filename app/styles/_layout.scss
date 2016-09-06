@@ -38,14 +38,14 @@ body {
 
   .app-footer-left {
     position: absolute;
-    z-index: 200;
-    bottom: .5em;
-    left: .5em;
+    z-index: $z-index-app-footer-left;
+    bottom: $app-footer-left--bottom-offset;
+    left: $app-footer-left--left-offset;
   }
   .app-footer-center {
     position: absolute;
-    z-index: 100;
-    bottom: .5em;
+    z-index: $z-index-app-footer-center;
+    bottom:$app-footer-center--bottom-offset;
     left:0;
     right:0;
     text-align: center;

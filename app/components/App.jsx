@@ -6,9 +6,9 @@ import Icon from '../components/Icon'
 import MultilineInput from '../components/MultilineInput'
 
 const App = props => {
-  const plusIcon = <Icon icon='octicon-plus' style='icon--lg' />
-  const clearIcon = <Icon icon='octicon-x' />
-  const clearBtn = <div className='app-footer-left'><Btn icon={clearIcon} isRound inverted dropShadow handleClick={props.resetBlocks} /></div>
+  const plusIcon = <Icon icon='octicon-plus' size='icon--lg' />
+  const clearIcon = <Icon icon='octicon-x' size='icon--sm' />
+  const clearBtn = <div className='app-footer-left'><Btn icon={clearIcon} isRound secondary handleClick={props.resetBlocks} /></div>
 
   return (
     <div className='app-container'>

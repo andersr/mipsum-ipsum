@@ -1,0 +1,14 @@
+.icon {
+	font-size: $icon-size-default;
+
+	&.icon--lg {
+		font-size: $icon-size-lg;
+	}
+
+	&.icon--sm {
+		font-size: $icon-size-sm;
+	}
+	// &.icon--inverted {
+	// 	color: $primary-text-color--inverted;
+	// }
+}
